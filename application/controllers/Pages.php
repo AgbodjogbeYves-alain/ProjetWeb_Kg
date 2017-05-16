@@ -7,8 +7,8 @@ class Pages extends CI_Controller {
     {
       $data['title'] = ucfirst('KGE-Accueil'); // Capitalize the first letter
       $this->load->view('template/header', $data);
-      $this->load->view('pages/navbar_accueil', $data);
-      $this->load->view('pages/accueil', $data);
+      $this->load->view('pages/accueil/navbar_accueil', $data);
+      $this->load->view('pages/accueil/accueil', $data);
       $this->load->view('template/footer', $data);
     }
 }
