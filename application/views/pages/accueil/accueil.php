@@ -1,6 +1,6 @@
 
 <!-- Page Contents -->
-  <div class="ui inverted vertical masthead center aligned segment" id="back">
+  <div class="ui inverted vertical masthead center aligned segment" id="back" ng-controller="accueil">
     <div class="ui large secondary inverted pointing menu">
         <a class="toc item">
           <i class="sidebar icon"></i>
@@ -52,26 +52,26 @@
       <h3 class="ui header">Nos activités</h3>
       <p>Nous aidons nos clients à développer leurs activités et obtenir des Financements auprès des investisseurs.</p>
       <div class="ui large buttons">
-             <button class="ui basic button" onclick="masquer_div('a_masquer_1','a_masquer_2');">
-              <img src="files/biz-plan-300x266.png" class="ui small circular image">
+             <button class="ui basic button" ng-click="a_masquer1=false" ng-click="a_masquer2=true">
+              <img src="files/images/biz-plan-300x266.png" class="ui small circular image">
                  KG Business Plan
              </button>
           <div></div>
           <div></div>
-               <button class="ui basic button" onclick="masquer_div('a_masquer_2','a_masquer_1');">
-                 <img src="files/consultancy-icon-27.png" class="ui small circular image">
+               <button class="ui basic button" ng-click="a_masquer2=false" ng-click="a_masquer1=true">
+                 <img src="files/images/consultancy-icon-27.png" class="ui small circular image">
                  KG Consulting
              </button>
       </div>
       </br>
       </br>
-      <div id="a_masquer_1" style="display: none" class="ui text container">
+      <div id="a_masquer_1" ng-hide="a_masquer1" class="ui text container">
          <p> -  Conception de Business Plan </br></br>
              - Coaching du client et accompagnement à la présentation de Business Plan
         </p>
 
       </div>
-      <div id="a_masquer_2" style="display: none;" class="ui text inverted container">
+      <div id="a_masquer_2" ng-hide="a_masquer2" class="ui text inverted container">
         <p>- Assistance comptable (Saisie des pièces, analyse des comptes, Rapprochements bancaires, Paie) </br></br>
            - Assistance fiscale (Déclarations des différents impôts dus). </br></br>
            - Conseils</br>
@@ -85,7 +85,7 @@
       <h3 class="ui header">Notre équipe</h3>
       <div class="ui horizontal list">
       <div class="item right">
-        <img class="ui small circular image" src="files/constant.jpg">
+        <img class="ui small circular image" src="files/images/constant.jpg">
         <div class="content" >
           <div class="ui sub header" >Goly Constant</div>
           Co-fondateur KG-Entreprise
@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="item right">
-        <img class="ui small circular image" src="files/nathan.jpg">
+        <img class="ui small circular image" src="files/images/nathan.jpg">
         <div class="content">
           <div class="ui sub header">Kouamé Nathan</div>
           Co-fondateur KG-Entreprise

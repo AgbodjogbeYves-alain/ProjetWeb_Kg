@@ -12,7 +12,9 @@
   <link rel="stylesheet" type="text/css" href="css/mystyle.css"/>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="semantic/out/semantic.min.js"></script>
+	<script src="files/angularCTRL/angular.min.js"></script>
+
 </head>
 
 <body>
-	<div class="pusher">
+	<div class="pusher" ng-app="kge-project">
