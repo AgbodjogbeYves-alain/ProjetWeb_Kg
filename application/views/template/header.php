@@ -17,4 +17,4 @@
 </head>
 
 <body>
-	<div class="pusher" ng-app="kge-project">
+	<div class="pusher" >

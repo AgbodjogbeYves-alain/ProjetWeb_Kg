@@ -55,7 +55,7 @@ display: none;
 }
 
 #back{
-	background: url(../files/Business-Internet-Technology-Wallpaper-00250.jpg) center;
+	background: url(files/images/Business-Internet-Technology-Wallpaper-00250.jpg) center;
 	background-size: cover;
 	background-repeat: no-repeat;
 
@@ -68,7 +68,7 @@ display: none;
 	}
 
 @media only screen and (max-width: 768px) {
-	
+
 	 .secondary.pointing.menu .item, .secondary.pointing.menu .menu,.ui.fixed.menu .ui.container .right.menu {
         display: none;
     }
@@ -77,7 +77,7 @@ display: none;
          max-height: auto;
       	overflow-x: auto;
     }
-    
+
 	.ui.fixed.menu{
     	box-shadow: black 1px 4px 10px 1px;
 	}
@@ -99,4 +99,3 @@ display: none;
 
 
 }
-
