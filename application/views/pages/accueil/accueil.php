@@ -65,7 +65,7 @@
       </div>
       </br>
       </br>
-      <div id="a_masquer_1" style="display: none" class="ui text container">
+      <div id="a_masquer_1" ng-show='false' class="ui text container">
          <p> -  Conception de Business Plan </br></br>
              - Coaching du client et accompagnement à la présentation de Business Plan
         </p>
@@ -85,7 +85,7 @@
       <h3 class="ui header">Notre équipe</h3>
       <div class="ui horizontal list">
       <div class="item right">
-        <img class="ui small circular image" src="files/constant.jpg">
+        <img class="ui small circular image" src="images/constant.jpg">
         <div class="content" >
           <div class="ui sub header" >Goly Constant</div>
           Co-fondateur KG-Entreprise
@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="item right">
-        <img class="ui small circular image" src="files/nathan.jpg">
+        <img class="ui small circular image" src="images/nathan.jpg">
         <div class="content">
           <div class="ui sub header">Kouamé Nathan</div>
           Co-fondateur KG-Entreprise

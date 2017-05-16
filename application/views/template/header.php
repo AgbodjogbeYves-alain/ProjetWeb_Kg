@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" ng-app>
 <head>
 	<title>KGEntreprise</title>
   <!-- Standard Meta -->
@@ -16,5 +16,5 @@
 
 </head>
 
-<body>
+<body ng-app="kge-projet">
 	<div class="pusher" >

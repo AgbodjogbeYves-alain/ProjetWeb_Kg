@@ -6,11 +6,6 @@ app.config(['$httpProvider', function($httpProvider) {
     }
 ]);
 
-app.controller('accueil', function($div1, $div2) {
-    $http.get("/api/section").then(function(response) {
-        $scope.sections = response.data;
-    });
-});
 
 app.controller('agendaCtrl', function($scope, $http) {
     $http.get("http://wave-it.fr/polytech/content/remote/exists?s="+page_section+page_annee).then(function(response) {
