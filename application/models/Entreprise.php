@@ -1,3 +1,4 @@
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Entreprise_model extends CI_Model {
@@ -78,3 +79,4 @@ class Entreprise_model extends CI_Model {
         }
 
 }
+?>
