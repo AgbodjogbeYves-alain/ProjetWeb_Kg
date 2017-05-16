@@ -59,10 +59,10 @@ class Entreprise_model extends CI_Model {
         public function insert_entreprise()
         {
                 $data = array(
-                        'nom_entreprise' => $_POST['n_entreprise'];
-                        'descriptif_entreprise' => $_POST['d_entreprise'];
-                        'representant' => $_POST['r_entreprise'];
-                        'email_entreprise' => $_POST['em_entreprise'];
+                        'nom_entreprise' => $_POST['n_entreprise'],
+                        'descriptif_entreprise' => $_POST['d_entreprise'],
+                        'representant' => $_POST['r_entreprise'],
+                        'email_entreprise' => $_POST['em_entreprise']
                         );
                 $this->db->insert('Entreprise', $data);
         }
