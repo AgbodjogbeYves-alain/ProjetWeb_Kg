@@ -55,7 +55,7 @@ display: none;
 }
 
 #back{
-	background: url(images/Business-Internet-Technology-Wallpaper-00250.jpg) center;
+	background: url('../images/Business-Internet-Technology-Wallpaper-00250.jpg') center;
 	background-size: cover;
 	background-repeat: no-repeat;
 
