@@ -74,15 +74,15 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
+	'dsn'	=> 'postgres://gqqmjqpbkgsvbu:3b852ced2febc016a42eaa61c96f4a72f5974a080a73edc0f7e9ed3e62aa1250@ec2-54-75-231-195.eu-west-1.compute.amazonaws.com:5432/ddhtop809ldhlg',
 	'hostname' => 'ec2-54-75-231-195.eu-west-1.compute.amazonaws.com',
 	'username' => 'gqqmjqpbkgsvbu',
 	'password' => '3b852ced2febc016a42eaa61c96f4a72f5974a080a73edc0f7e9ed3e62aa1250',
 	'database' => 'ddhtop809ldhlg',
-	'dbdriver' => 'pdo',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
+	'db_debug' => TRUE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',

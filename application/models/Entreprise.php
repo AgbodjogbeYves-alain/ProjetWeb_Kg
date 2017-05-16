@@ -2,11 +2,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Entreprise_model extends CI_Model {
 
-        public $id_entreprise;
-        public $nom_entreprise;
-        public $descriptif_entreprise;
-        public $representant;
-        public $email_entreprise;
+        public function __construct() {
+                // Call the CI_Model constructor
+                parent::__construct();
+        }
 
         public function isIn($id){
           $this->db->get_where('Entreprise',array('id'=>$id));
@@ -22,6 +21,12 @@ class Entreprise_model extends CI_Model {
         public function get_name_entreprise($id)
         {
                 $query = $this->db->get_where('Entreprise',array('id'=>$id));
+                return $query->result_array();
+        }
+
+        public function get_id_entreprise($name_entreprise)
+        {
+                $query = $this->db->get_where('Entreprise',array('nom_entreprise'=>$name_entreprise));
                 return $query->result_array();
         }
 
