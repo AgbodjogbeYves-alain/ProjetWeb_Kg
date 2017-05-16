@@ -37,7 +37,7 @@
           </p>
         </div>
         <div class="six wide right floated column">
-          <img src="images/biz-plan-300x266.png" class="ui large bordered rounded image">
+          <img src="images/serrerlamain.jpg" class="ui large bordered rounded image">
         </div>
       </div>
       <div class="row">
@@ -53,13 +53,13 @@
       <p>Nous aidons nos clients à développer leurs activités et obtenir des Financements auprès des investisseurs.</p>
       <div class="ui large buttons">
              <button class="ui basic button" onclick="masquer_div('a_masquer_1','a_masquer_2');">
-              <img src="application/files/images/biz-plan-300x266.png" class="ui small circular image">
+              <img src="images/biz-plan-300x266.png" class="ui small circular image">
                  KG Business Plan
              </button>
           <div></div>
           <div></div>
                <button class="ui basic button" onclick="masquer_div('a_masquer_2','a_masquer_1');">
-                 <img src="application/files/images/consultancy-icon-27.png" class="ui small circular image">
+                 <img src="images/consultancy-icon-27.png" class="ui small circular image">
                  KG Consulting
              </button>
       </div>
