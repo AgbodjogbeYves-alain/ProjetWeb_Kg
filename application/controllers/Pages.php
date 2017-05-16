@@ -19,10 +19,10 @@ class Pages extends CI_Controller {
       $this->load->view('template/footer', $data);
     }
 
-    /*public function test(){
+    public function test(){
       $this->load->model('entreprise');
       $data['nom_entreprise'] = $this->entreprise->get_name_entreprise(0);
       echo($data['nom_entreprise']);
-    }*/
+    }
 }
 ?>
