@@ -79,4 +79,3 @@ class Entreprise_model extends CI_Model {
         }
 
 }
-?>
