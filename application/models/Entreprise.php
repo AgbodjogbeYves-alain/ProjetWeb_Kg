@@ -39,13 +39,13 @@ class Entreprise_model extends CI_Model {
 
         public function get_representant_by_name($nomEntreprise)
         {
-                $query = $this->db->get_where('entreprise',array('nom_entreprise'=>$);
+                $query = $this->db->get_where('entreprise',array('nom_entreprise'=>$nomEntreprise));
                 return $query->result();
         }
 
         public function get_representant_by_id($idEntreprise)
         {
-                $query = $this->db->get_where('entreprise',array('id_entreprisee'=>$idEntreprise);
+                $query = $this->db->get_where('entreprise',array('id_entreprisee'=>$idEntreprise));
                 return $query->result();
         }
 
