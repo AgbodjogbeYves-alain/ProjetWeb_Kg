@@ -37,7 +37,7 @@
           </p>
         </div>
         <div class="six wide right floated column">
-          <img src="<?php echo base_url('images/biz-plan-300x266.png'); ?>" class="ui large bordered rounded image">
+          <img src="images/biz-plan-300x266.png" class="ui large bordered rounded image">
         </div>
       </div>
       <div class="row">
