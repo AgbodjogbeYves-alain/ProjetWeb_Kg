@@ -47,31 +47,29 @@
   </div>
 
 
-  <div class="ui vertical stripe segment" id="activities">
+  <div class="ui vertical stripe segment" id="activities" ng-controller="affichageDiv1">
     <div class="ui text container" style="text-align: center;">
       <h3 class="ui header">Nos activités</h3>
       <p>Nous aidons nos clients à développer leurs activités et obtenir des Financements auprès des investisseurs.</p>
       <div class="ui large buttons">
-             <button class="ui basic button" onclick="masquer_div('a_masquer_1','a_masquer_2');">
+             <button class="ui basic button" ng-click="masquer_div1();">
               <img src="images/biz-plan-300x266.png" class="ui small circular image">
                  KG Business Plan
              </button>
-          <div></div>
-          <div></div>
-               <button class="ui basic button" onclick="masquer_div('a_masquer_2','a_masquer_1');">
+               <button class="ui basic button"  ng-click="masquer_div2()">
                  <img src="images/consultancy-icon-27.png" class="ui small circular image">
                  KG Consulting
              </button>
       </div>
       </br>
       </br>
-      <div id="a_masquer_1" ng-show='false' class="ui text container">
+      <div id="a_masquer_1" ng-show='hideMe1' class="ui text container">
          <p> -  Conception de Business Plan </br></br>
              - Coaching du client et accompagnement à la présentation de Business Plan
         </p>
 
       </div>
-      <div id="a_masquer_2" style="display: none;" class="ui text inverted container">
+      <div id="a_masquer_2"  ng-show='hideMe2' class="ui text inverted container">
         <p>- Assistance comptable (Saisie des pièces, analyse des comptes, Rapprochements bancaires, Paie) </br></br>
            - Assistance fiscale (Déclarations des différents impôts dus). </br></br>
            - Conseils</br>
