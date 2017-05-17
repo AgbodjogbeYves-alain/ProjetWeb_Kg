@@ -11,7 +11,7 @@ class Entreprise_model extends CI_Model {
         }
 
         public function isIn($idEntreprise){
-          $this->db->get_where('Entreprise',array('id'=>$id));
+          $this->db->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
           return $this->db->count_all_result()==0;
         }
 
@@ -23,19 +23,19 @@ class Entreprise_model extends CI_Model {
 
         public function get_name_entreprise($idEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$id));
+                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
                 return $query->result_array();
         }
 
         public function get_id_entreprise($nomEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('nom_entreprise'=>$name_entreprise));
+                $query = $this->db->get_where('Entreprise',array('nom_entreprise'=>$nomEntreprise));
                 return $query->result_array();
         }
 
         public function get_email_enterprises($idEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$id));
+                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
                 return $query->result_array();
         }
 
@@ -53,7 +53,7 @@ class Entreprise_model extends CI_Model {
 
         public function get_like_by_name($nomEntreprise)
         {
-                $this->db->like('nom_entreprise', $nom_entreprise);
+                $this->db->like('nom_entreprise', $nomEntreprise);
                 $this->db->from('Entreprise');
                 return $query->result_array();
         }
@@ -69,7 +69,7 @@ class Entreprise_model extends CI_Model {
                 $this->db->insert('Entreprise', $data);
         }
 
-        public function update_entreprise($array,$id)
+        public function update_entreprise($array,$idEntreprise)
         {
                 $data = array(
                   'nom_entreprise' => $array[0],
@@ -77,7 +77,7 @@ class Entreprise_model extends CI_Model {
                   'representant' => $array[2],
                   'email_entreprise' => $array[3]
                   );
-                $this->db->update('Entreprise', $data,array('id' => $id));
+                $this->db->update('Entreprise', $data,array('id_entreprise' => $idEntreprise);
         }
 
 }
