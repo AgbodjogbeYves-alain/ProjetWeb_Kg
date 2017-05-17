@@ -19,7 +19,7 @@ class Pages extends CI_Controller {
     }
 
     public function test(){
-      $this->load->model('Entreprise');
+      $this->load->model('Entreprise_model');
       //$data['nom_entreprise'] = $this->entreprise->get_name_entreprise(0);
       /*echo($data['nom_entreprise']);*/
       $this->load->view('template/header', $data);
