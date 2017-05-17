@@ -11,8 +11,8 @@ class Entreprise_model extends CI_Model {
         }
 
         public function isIn($idEntreprise){
-          $this->db->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
-          return $this->db->count_all_result()==0;
+          $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$idEntreprise))->count_all_result();
+          return $query==0;
         }
 
         public function get_first_ten_enterprises()
@@ -23,38 +23,37 @@ class Entreprise_model extends CI_Model {
 
         public function get_name_entreprise($idEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
+                $query = $this->db->select('nom_entreprise')->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
                 return $query->result_array();
         }
 
         public function get_id_entreprise($nomEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('nom_entreprise'=>$nomEntreprise));
+                $query = $this->db->select('email_entreprise')->get_where('Entreprise',array('nom_entreprise'=>$nomEntreprise));
                 return $query->result_array();
         }
 
         public function get_email_enterprises($idEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
+                $query = $this->db->select('email_entreprise')->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
                 return $query->result_array();
         }
 
         public function get_representant_by_name($nomEntreprise)
         {
-                $query = $this->db->get_where('entreprise',array('nom_entreprise'=>$nomEntreprise));
+                $query = $this->db->select('representant')->get_where('Entreprise',array('nom_entreprise'=>$nomEntreprise));
                 return $query->result();
         }
 
         public function get_representant_by_id($idEntreprise)
         {
-                $query = $this->db->get_where('entreprise',array('id_entreprise'=>$idEntreprise));
+                $query = $this->db->select('representant')->get_where('Entreprise',array('id_entreprise'=>$idEntreprise));
                 return $query->result();
         }
 
         public function get_like_by_name($nomEntreprise)
         {
-                $this->db->like('nom_entreprise', $nomEntreprise);
-                $this->db->from('Entreprise');
+                $query = $this->db->like('nom_entreprise', $nomEntreprise)->from('Entreprise');
                 return $query->result_array();
         }
 

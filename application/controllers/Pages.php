@@ -20,13 +20,9 @@ class Pages extends CI_Controller {
     }
 
     public function test(){
-      $this->load->model('entreprise_model');
-      $data = $this->entreprise_model->get_name_entreprise(0);
+      $this->load->model('client_model');
+      $data = $this->client_model->isIn(0);
       print_r($data);
-      $this->load->view('template/header', $data);
-      $this->load->view('pages/accueil/navbar_accueil', $data);
-      $this->load->view('pages/accueil/accueil', $data);
-      $this->load->view('template/footer', $data);
 
     }
 }
