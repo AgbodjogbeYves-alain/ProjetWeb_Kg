@@ -22,7 +22,7 @@ class Pages extends CI_Controller {
     public function test(){
       $this->load->model('client_model');
       $data = $this->client_model->isIn(0);
-      print_r($data);
+      echo($data);
 
     }
 }
