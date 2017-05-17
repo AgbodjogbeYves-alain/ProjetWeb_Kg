@@ -19,9 +19,9 @@ class Pages extends CI_Controller {
     }
 
     public function test(){
-      $this->load->model('Entreprise_model');
-      //$data['nom_entreprise'] = $this->entreprise->get_name_entreprise(0);
-      /*echo($data['nom_entreprise']);*/
+      $this->load->model('entreprise_model');
+      $data['nom_entreprise'] = $this->entreprise->get_name_entreprise(0);
+      echo($data['nom_entreprise']);
       $this->load->view('template/header', $data);
       $this->load->view('pages/accueil/navbar_accueil', $data);
       $this->load->view('pages/accueil/accueil', $data);
