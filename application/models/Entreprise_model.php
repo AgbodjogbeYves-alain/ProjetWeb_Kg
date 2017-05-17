@@ -77,7 +77,7 @@ class Entreprise_model extends CI_Model {
                   'representant' => $array[2],
                   'email_entreprise' => $array[3]
                   );
-                $this->db->update('Entreprise', $data,array('id_entreprise' => $idEntreprise);
+                $this->db->update('Entreprise', $data,array('id_entreprise' => $idEntreprise));
         }
 
 }
