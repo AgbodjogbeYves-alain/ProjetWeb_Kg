@@ -7,6 +7,7 @@ class Pages extends CI_Controller {
      {
              parent::__construct();
              $this->load->helper('url_helper');
+             $this->load->database();
      }
 
     public function accueil()
