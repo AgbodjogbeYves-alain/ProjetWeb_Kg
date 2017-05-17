@@ -7,7 +7,7 @@ class Pages extends CI_Controller {
      {
              parent::__construct();
              $this->load->helper('url_helper');
-             
+
      }
 
     public function accueil()
@@ -21,7 +21,7 @@ class Pages extends CI_Controller {
 
     public function test(){
       $this->load->model('entreprise_model');
-      $data['nom_entreprise'] = $this->entreprise_model->get_name_entreprise(0);
+      $data = $this->entreprise_model->get_name_entreprise(0);
       echo($data['nom_entreprise']);
       $this->load->view('template/header', $data);
       $this->load->view('pages/accueil/navbar_accueil', $data);
