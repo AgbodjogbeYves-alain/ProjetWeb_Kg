@@ -6,10 +6,11 @@ class Entreprise_model extends CI_Model {
         public function __construct() {
                 // Call the CI_Model constructor
                 parent::__construct();
-                
+                $this->load->database();
+
         }
 
-        public function isIn($id){
+        public function isIn($idEntreprise){
           $this->db->get_where('Entreprise',array('id'=>$id));
           return $this->db->count_all_result()==0;
         }
@@ -20,21 +21,21 @@ class Entreprise_model extends CI_Model {
                 return $query->result_array();
         }
 
-        public function get_name_entreprise($id)
+        public function get_name_entreprise($idEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('id'=>$id));
+                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$id));
                 return $query->result_array();
         }
 
-        public function get_id_entreprise($name_entreprise)
+        public function get_id_entreprise($nomEntreprise)
         {
                 $query = $this->db->get_where('Entreprise',array('nom_entreprise'=>$name_entreprise));
                 return $query->result_array();
         }
 
-        public function get_email_enterprises($id)
+        public function get_email_enterprises($idEntreprise)
         {
-                $query = $this->db->get_where('Entreprise',array('id'=>$id));
+                $query = $this->db->get_where('Entreprise',array('id_entreprise'=>$id));
                 return $query->result_array();
         }
 
@@ -46,7 +47,7 @@ class Entreprise_model extends CI_Model {
 
         public function get_representant_by_id($idEntreprise)
         {
-                $query = $this->db->get_where('entreprise',array('id_entreprisee'=>$idEntreprise));
+                $query = $this->db->get_where('entreprise',array('id_entreprise'=>$idEntreprise));
                 return $query->result();
         }
 
