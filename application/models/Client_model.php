@@ -11,8 +11,8 @@ class Client_model extends CI_Model {
         }
 
         public function isIn($idClient){
-          $query = $this->db->get_where('Client',array('num_client'=>$idClient))->count_all_result();
-          return $query==0;
+          $this->db->get_where('Client',array('num_client'=>$idClient));
+          return $this->db->count_all_result()==0;
         }
 
         public function get_first_ten_clients()
