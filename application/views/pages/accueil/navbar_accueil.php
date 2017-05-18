@@ -7,7 +7,7 @@
    <a class="item page-scroll" href="#activities">Nos activités</a>
    <a class="item page-scroll"  href="#team">Notre équipe</a>
    <a class="item page-scroll" href="#contact">Contact</a>
-    <a class="item page-scroll" href="#contact">Connexion</a>
+    <a  id="connexion" class="item page-scroll" href="#contact">Connexion</a>
 </nav>
 <nav class="ui top fixed inverted pointing hidden menu blue ">
     <div class="ui container">
@@ -19,13 +19,14 @@
              <a class="active item page-scroll" href="#back" >Accueil</a>
              <a class="item page-scroll" href="#presentationKG">Qui sommes nous?</a>
              <a class="item page-scroll" href="#activities">Nos activités</a>
-             <a class="item page-scroll"  href="#team">Notre équipe</a>                           
+             <a class="item page-scroll"  href="#team">Notre équipe</a>
         </div>
         <div class="right menu">
-           <a class="contact icon item page-scroll" href="#contact">Contact</a>                                                            
-           <a class="item" href=""><i class="sign in icon"></i>Connexion</a>            
+           <a class="contact icon item page-scroll" href="#contact">Contact</a>
+           <a class="item" id="connexion" href=""><i class="sign in icon"></i>Connexion</a>
         </div>
     </div>
+
 </nav>
 
 <script>
@@ -67,6 +68,4 @@ $('.ui.left.fixed.vertical.inverted.menu').first().sidebar('attach events', '.to
       $('.ui.sidebar')
         .sidebar('attach events', '.toc.item');
   });
-
-     
 </script>

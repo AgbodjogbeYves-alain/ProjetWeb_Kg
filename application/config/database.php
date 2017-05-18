@@ -74,10 +74,10 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'postgres://gqqmjqpbkgsvbu:3b852ced2febc016a42eaa61c96f4a72f5974a080a73edc0f7e9ed3e62aa1250@ec2-54-75-231-195.eu-west-1.compute.amazonaws.com:5432/ddhtop809ldhlg',
+	'dsn'	=> 'postgres://tyhogabbpksmge:90dfb6d30299d0d71d604dc53a5cd81eff0b110345257a850ebceca116bde30f@ec2-54-75-231-195.eu-west-1.compute.amazonaws.com:5432/ddhtop809ldhlg',
 	'hostname' => 'ec2-54-75-231-195.eu-west-1.compute.amazonaws.com',
-	'username' => 'gqqmjqpbkgsvbu',
-	'password' => '3b852ced2febc016a42eaa61c96f4a72f5974a080a73edc0f7e9ed3e62aa1250',
+	'username' => 'tyhogabbpksmge',
+	'password' => '90dfb6d30299d0d71d604dc53a5cd81eff0b110345257a850ebceca116bde30f',
 	'database' => 'ddhtop809ldhlg',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
