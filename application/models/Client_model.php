@@ -23,7 +23,7 @@ class Client_model extends CI_Model {
         }
 
         public function login_client($email,$password){
-            $query = $this->db->select(*)->get_where('Client',array('email_client' => $email,'password' => $password );
+            $query = $this->db->get_where('Client',array('email_client' => $email,'password_client' => $password ));
             return $query->result_array();
         }
 

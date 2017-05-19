@@ -1,19 +1,19 @@
 ﻿CREATE TABLE "Client" (
-	"id_entreprise" serial NOT NULL,
-	"nom_entreprise" varchar(255) NOT NULL,
+	"id_client" serial NOT NULL,
+	"nom_client" varchar(255) NOT NULL,
 	"descriptif_client" varchar(255) NOT NULL,
   "representant" varchar(255) NOT NULL,
   "email_client" varchar(255) NOT NULL,
 	"password_client" varchar(255) NOT NULL,
 	"type_client" int NOT NULL,
-	CONSTRAINT Entreprise_pk PRIMARY KEY ("id_entreprise")
+	CONSTRAINT Client_pk PRIMARY KEY ("id_client")
 ) WITH (
   OIDS=FALSE
 );
 
 CREATE TABLE "Type_Client"(
-	id_type int NOT NULL,
-	libelle varchar(255) NOT NULL,
+	"id_type" int NOT NULL,
+	"libelle" varchar(255) NOT NULL,
 	CONSTRAINT Type_Client_pk PRIMARY KEY("id_type")
 )WITH (
   OIDS=FALSE
@@ -49,21 +49,31 @@ CREATE TABLE "Contrat" (
   OIDS=FALSE
 );
 
-CREATE TABLE "Administrateur"(
+CREATE TABLE "Administrateurs"(
 	"id_admin" serial NOT NULL,
 	"nom_admin" varchar(255) NOT NULL,
 	"prenom_admin" varchar(255) NOT NULL,
+	"password_admin" varchar(255) NOT NULL,
 	"numero_admin" varchar(255) NOT NULL,
-	"email_admin" varchar(255) NOT NULL,
-	"privilege_admin" int NOT NULL,
+	"email_admin" varchar(255) NOT NULL UNIQUE,
+	"privilege_admin" serial NOT NULL,
 	CONSTRAINT Admin_pk PRIMARY KEY ("id_admin")
-	) WITH (
+) WITH (
   	OIDS=FALSE
 	);
 )
 
+CREATE TABLE "Privileges"(
+	"id_privilege" serial NOT NULL,
+	"libelle" varchar(255) NOT NULL,
+	CONSTRAINT Admin_pk PRIMARY KEY ("id_admin")
+) WITH (
+  	OIDS=FALSE
+	);
 
 
-ALTER TABLE "Contrat" ADD CONSTRAINT "Contrat_fk0" FOREIGN KEY ("num_client") REFERENCES "Client"("num_client") ON DELETE CASCADE;
+
+ALTER TABLE "Contrat" ADD CONSTRAINT "Contrat_fk0" FOREIGN KEY ("id_client") REFERENCES "Client"("id_client") ON DELETE CASCADE;
 ALTER TABLE "Contrat" ADD CONSTRAINT "Contrat_fk1" FOREIGN KEY ("type_contrat") REFERENCES "Type_contrat"("id_type") ON DELETE CASCADE;
-ALTER TABLE "Client" ADD CONSTRAINT "Client_fk1" FOREIGN KEY ("id_type") REFERENCES "Type_Client"("id_type") ON DELETE CASCADE;
+ALTER TABLE "Client" ADD CONSTRAINT "Client_fk1" FOREIGN KEY ("type_client") REFERENCES "Type_Client"("id_type") ON DELETE CASCADE;
+ALTER TABLE "Administrateurs" ADD CONSTRAINT "Admin_fk1" FOREIGN KEY ("privileges_admin") REFERENCES "Privileges"("id_privilege") ON DELETE CASCADE;

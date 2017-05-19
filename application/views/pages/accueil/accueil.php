@@ -112,56 +112,54 @@
     </div>
   </div>
 
-<div class="ui small modal" ng-controller="logCtrl"> <i class="close icon"></i>
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui teal image header">
-      <div class="content">
-        Connexion
-      </div>
-    </h2>
-    <div class="alert alert-danger" ng-show="error">
-        There was a problem logging in. Please try again.
-    </div>
-    <form class="ui large form" id="logForm" ng-submit="login()">
-      <div class="ui stacked segment form-group" >
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" id="usermail" ng-model="credentials.usermail" class="form-control" name="email" placeholder="E-mail">
-          </div>
+<div class="ui small modal"> <i class="close icon"></i>
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <h2 class="ui teal image header">
+        <img src="assets/images/logo.png" class="image">
+        <div class="content">
+          Fenêtre de connexion
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" class="form-control" id="password" name="password" ng-model="credentials.role" placeholder="Mot de passe">
+      </h2>
+      <form class="ui large form" method="post" action="<?php echo site_url('accueilCtrl/connexion');?>">
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" name="email" placeholder="E-mail">
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <div class="ui selection dropdown">
-                <input type="hidden" name="role" class="form-control" id="role" ng-model="credentials.role">
-                <i class="dropdown icon"></i>
-                <div class="default text">Vous êtes un :</div>
-                <div class="menu">
-                  <div class="item" data-value="0">Administrateur</div>
-                  <div class="item" data-value="1">Client</div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="Mot de passe">
+            </div>
+          </div>
+          <div class="ui fluid selection dropdown">
+              <input type="hidden" name="role">
+              <i class="dropdown icon"></i>
+              <div class="default text">Select Friend</div>
+              <div class="menu">
+                <div class="item" data-value="entreprise">
+                  <i class="suitcase icon"></i>
+                  Entreprise
+                </div>
+                <div class="item" data-value="administrateur">
+                  <i class="user icon"></i>Administrateur
                 </div>
               </div>
-          </div>
+            </div><br>
+          <div class="ui fluid large teal submit button">Connexion</div>
         </div>
-        <div class="ui fluid large teal submit button">Connexion</div>
+        <div class="ui error message"></div>
+
+      </form>
+
+      <div class="ui message">
+        Vous êtes nouveau? Contactez nous ;) <a href="#">Contact</a>
       </div>
-
-      <div class="ui error message"></div>
-
-    </form>
-
-    <div class="ui message">
-      Vous n'avez pas de compte? Contactez nous :) <a href="">Contact</a>
     </div>
   </div>
-</div>
 </div>
 
 <script type="text/javascript">
@@ -175,5 +173,42 @@ $(document).ready(function() {
   .dropdown()
 ;
 });
-
 </script>
+<script>
+  $(document)
+    .ready(function() {
+      $('.ui.form')
+        .form({
+          fields: {
+            email: {
+              identifier  : 'email',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Entrez un email'
+                },
+                {
+                  type   : 'email',
+                  prompt : 'Entrez un e-mail valide'
+                }
+              ]
+            },
+            password: {
+              identifier  : 'password',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Entrez un mot de passe'
+                },
+                {
+                  type   : 'length[3]',
+                  prompt : 'Votre mot de passe doit avoir plus de 6 caractères'
+                }
+              ]
+            }
+          }
+        })
+      ;
+    })
+  ;
+  </script>
