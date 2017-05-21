@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <!-- Site Properties -->
-  <link rel="stylesheet" type="text/css" href="<?php  echo base_url("element_design/semantic/out/semantic.min.css");?>"/>
+  <link rel="stylesheet" type="text/css" href="<?php  echo site_url("element_design/semantic/out/semantic.min.css");?>"/>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url("element_design/css/mystyle.css");?>"/>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="element_design/semantic/out/semantic.min.js"></script>
