@@ -1,5 +1,14 @@
-
 <!-- Page Contents -->
+<?php if($connexion == 'error'){?>
+  <div class="ui negative message">
+  <i class="close icon"></i>
+  <div class="header">
+    Erreur de connexion
+  </div>
+    <p>Veuillez verifier votre e-mail ou votre mot de passe
+  </p></div>
+<?php }?>
+
   <div class="ui inverted vertical masthead center aligned segment" id="back">
     <div class="ui large secondary inverted pointing menu">
         <a class="toc item">
@@ -37,7 +46,7 @@
           </p>
         </div>
         <div class="six wide right floated column">
-          <img src="element_design/images/serrerlamain.jpg" class="ui large bordered rounded image">
+          <img src="<?php echo base_url("element_design/images/serrerlamain.jpg")?>" class="ui large bordered rounded image">
         </div>
       </div>
       <div class="row">
@@ -53,11 +62,11 @@
       <p>Nous aidons nos clients à développer leurs activités et obtenir des Financements auprès des investisseurs.</p>
       <div class="ui large buttons">
              <button class="ui basic button" ng-click="fermer_div2(); masquer_div1()">
-              <img src="element_design/images/biz-plan-300x266.png" class="ui small circular image">
+              <img src="<?php echo base_url("element_design/images/biz-plan-300x266.png")?>" class="ui small circular image">
                  KG Business Plan
              </button>
                <button class="ui basic button"  ng-click="fermer_div1(); masquer_div2()">
-                 <img src="element_design/images/consultancy-icon-27.png" class="ui small circular image">
+                 <img src="<?php echo base_url("element_design/images/consultancy-icon-27.png")?>" class="ui small circular image">
                  KG Consulting
              </button>
       </div>
@@ -83,7 +92,7 @@
       <h3 class="ui header">Notre équipe</h3>
       <div class="ui horizontal list">
       <div class="item right">
-        <img class="ui small circular image" src="element_design/images/constant.jpg">
+        <img class="ui small circular image" src="<?php echo base_url("element_design/images/constant.jpg")?>">
         <div class="content" >
           <div class="ui sub header" >Goly Constant</div>
           Co-fondateur KG-Entreprise
@@ -96,7 +105,7 @@
         </div>
       </div>
       <div class="item right">
-        <img class="ui small circular image" src="element_design/images/nathan.jpg">
+        <img class="ui small circular image" src="<?php echo base_url("element_design/images/nathan.jpg")?>">
         <div class="content">
           <div class="ui sub header">Kouamé Nathan</div>
           Co-fondateur KG-Entreprise
@@ -121,7 +130,7 @@
           Fenêtre de connexion
         </div>
       </h2>
-      <form class="ui large form" method="post" action='accueilCtrl/connexion'>
+      <form class="ui large form" method="post" action='<?php echo base_url('connect')?>'>
         <div class="ui stacked segment">
           <div class="field">
             <div class="ui left icon input">

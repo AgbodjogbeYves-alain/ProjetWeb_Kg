@@ -1,4 +1,4 @@
-  var app = angular.module("kge-project", []);
+  var app = angular.module("kgeproject", []);
 
   app.controller("affichageDiv", function($scope) {
       $scope.hideMe1 = false;
@@ -17,3 +17,6 @@
       }
 
   });
+
+
+

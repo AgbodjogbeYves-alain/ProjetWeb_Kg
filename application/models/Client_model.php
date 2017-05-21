@@ -27,4 +27,10 @@ class Client_model extends CI_Model {
             return $query->result_array();
         }
 
+        public function get_all_clients()
+        {
+                $query = $this->db->get('Client');
+                return $query->result_array();
+        }
+
 }

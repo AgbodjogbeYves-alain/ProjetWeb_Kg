@@ -52,5 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'accueilCtrl/accueil';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['connect'] = 'accueilCtrl/connexion';
+
 //$route['test'] = 'accueilCtrl/test';
-//$route['accueilCtrl/(:any)'] = 'accueilCtrl/connexion';
+//$route['getContrats'] = 'contratCtrl/getContrats';
+//$route['getAdmins'] = 'adminsCtrl/getAdmins';
+$route['getclients'] = 'adminpartctrl/getclients';
+$route['deconnexion'] = 'adminsCtrl/deconnexion';

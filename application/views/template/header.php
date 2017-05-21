@@ -15,7 +15,7 @@
 
 </head>
 
-<body ng-app="kge-project">
+<body ng-app="kgeproject">
   <script src="<?php  echo base_url("js/app.js");?>"></script>
 
 	<div class="pusher" >

@@ -17,8 +17,9 @@ class AccueilCtrl extends CI_Controller {
     public function accueil()
     {
       $data['title'] = 'KGE-Accueil'; // Capitalize the first letter
+      $data['connexion'] = '';
       $this->load->view('template/header', $data);
-      $this->load->view('pages/accueil/navbar_accueil', $data);
+      $this->load->view('template/navbar_accueil', $data);
       $this->load->view('pages/accueil/accueil', $data);
       $this->load->view('template/footer', $data);
     }
@@ -49,8 +50,10 @@ class AccueilCtrl extends CI_Controller {
 
         }else{
           $data['connexion'] = "error";
-          redirect("/");
-
+          $this->load->view('template/header', $data);
+          $this->load->view('pages/accueil/navbar_accueil', $data);
+          $this->load->view('pages/accueil/accueil', $data);
+          $this->load->view('template/footer', $data);
         }
     }else{
         $this->load->model('admin_model');
@@ -66,17 +69,24 @@ class AccueilCtrl extends CI_Controller {
           $data['key'] = $key;
           $data['key2'] = get_cookie('email',true);
           $this->load->view('template/header', $data);
-          echo realpath('template/header.php');
-          $this->load->view('pages/admin/homeA', $data);
+          $this->load->view('template/navbar_admin', $data);
           $this->load->view('template/footer', $data);
       }else{
         $data['connexion'] = 'error';
-        redirect("/");
+        $this->load->view('template/header', $data);
+        $this->load->view('template/navbar_accueil', $data);
+        $this->load->view('pages/accueil/accueil', $data);
+        $this->load->view('template/footer', $data);
 
       }
     }
   }else{
-    redirect("/");
+    $data['connexion'] = 'error';
+    $this->load->view('template/header', $data);
+    $this->load->view('template/navbar_accueil', $data);
+    $this->load->view('pages/accueil/accueil', $data);
+    $this->load->view('template/footer', $data);
+
   }
 }
 }
