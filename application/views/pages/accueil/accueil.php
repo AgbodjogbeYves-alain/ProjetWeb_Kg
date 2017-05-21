@@ -121,7 +121,7 @@
           Fenêtre de connexion
         </div>
       </h2>
-      <form class="ui large form" method="post" action="<?php echo site_url('accueilCtrl/connexion');?>">
+      <form class="ui large form" method="post" action='accueilCtrl/connexion'>
         <div class="ui stacked segment">
           <div class="field">
             <div class="ui left icon input">
@@ -140,9 +140,9 @@
               <i class="dropdown icon"></i>
               <div class="default text">Select Friend</div>
               <div class="menu">
-                <div class="item" data-value="entreprise">
+                <div class="item" data-value="client">
                   <i class="suitcase icon"></i>
-                  Entreprise
+                  Client
                 </div>
                 <div class="item" data-value="administrateur">
                   <i class="user icon"></i>Administrateur
@@ -202,7 +202,7 @@ $(document).ready(function() {
                 },
                 {
                   type   : 'length[3]',
-                  prompt : 'Votre mot de passe doit avoir plus de 6 caractères'
+                  prompt : 'Votre mot de passe doit avoir plus de 3 caractères'
                 }
               ]
             }

@@ -53,3 +53,4 @@ $route['default_controller'] = 'accueilCtrl/accueil';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 //$route['test'] = 'accueilCtrl/test';
+$route['accueilCtrl/(:any)'] = 'accueilCtrl/connexion';

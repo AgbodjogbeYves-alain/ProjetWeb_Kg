@@ -54,6 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	header('Access-Control-Allow-Origin: *');
 
 /*
  *---------------------------------------------------------------
@@ -234,6 +235,7 @@ switch (ENVIRONMENT)
 
 	// Name of the "system" directory
 	define('SYSDIR', basename(BASEPATH));
+
 
 	// The path to the "application" directory
 	if (is_dir($application_folder))

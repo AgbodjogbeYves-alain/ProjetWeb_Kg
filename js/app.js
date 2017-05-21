@@ -1,4 +1,4 @@
-  var app = angular.module("kge-projet", []);
+  var app = angular.module("kge-project", []);
 
   app.controller("affichageDiv", function($scope) {
       $scope.hideMe1 = false;

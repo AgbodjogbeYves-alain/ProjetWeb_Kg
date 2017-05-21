@@ -24,100 +24,59 @@ class AccueilCtrl extends CI_Controller {
     }
 
     public function connexion(){
-      print($this->input->post('email', True));
-        echo '<br>';
-      print($this->input->post('password', True));
-        echo '<br>';
-      print($this->input->post('role', True));
-        echo '<br>';
-
-      if(($this->input->post('email', True)) && ($this->input->post('password', True)) && ($this->input->post('role', True))){
-        $data['title']='Bienvenue dans votre espace personnel';
-        $this->load->model('client_model');
-        //$this->load->model('admin_model');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $this->security->xss_clean($email);
-        $this->security->xss_clean($password);
-        print($password);
-        echo '<br>';
-        print($email);
-        echo '<br>';
-          if($this->input->post('role')=='entreprise'){
-            $clientlog= $this->client_model->get_client($email);
-            print_r($clientlog);
-            print(password_verify($password,$clientlog[0]["password_client"]));
-            if(password_verify($password,$clientlog[0]['password_client'])){
-              $cookie1 = array(
-                'name'   => 'identifier_a',
-                'value'  => $this->encryption->encrypt($clientlog[0]['id_client']),
-                'expire' => '86500',
-                'domain' => site_url(),
-                'path'   => '/',
-                'secure' => TRUE
-              );
-              $cookie2 = array(
-                'name'   => 'email',
-                'value'  => $this->encryption->encrypt($clientlog[0]['email_client']),
-                'expire' => '86500',
-                'domain' => site_url(),
-                'path'   => '/',
-                'secure' => TRUE
-              );
-              $cookie3 = array(
-                'name'   => 'type_client',
-                'value'  => $this->encryption->encrypt($clientlog[0]['type_client']),
-                'expire' => '86500',
-                'domain' => site_url(),
-                'path'   => '/',
-                'secure' => TRUE
-              );
-
-              $this->load->view('template/header', $data);
-              $this->load->view('pages/client/navbar_client', $data);
-              $this->load->view('pages/client/homeC', $data);
-              $this->load->view('template/footer', $data);
-          }else{
-            //redirect("/","refresh");
-          }
-      }else{
-          $isLogin= $this->admin_model->login_admin($email,$password);
-          if(count($isLogin)>0){
-            $cookie1 = array(
-              'name'   => 'identifier_a',
-              'value'  => $this->encryption->encrypt($isLogin['id_admin']),
-              'expire' => '86500',
-              'domain' => site_url(),
-              'path'   => '/',
-              'secure' => TRUE
-            );
-            $cookie2 = array(
-              'name'   => 'email',
-              'value'  => $this->encryption->encrypt($isLogin['email_admin']),
-              'expire' => '86500',
-              'domain' => site_url(),
-              'path'   => '/',
-              'secure' => TRUE
-            );
-            $cookie3 = array(
-              'name'   => 'type_client',
-              'value'  => $this->encryption->encrypt($isLogin['privilege_client']),
-              'expire' => '86500',
-              'domain' => site_url(),
-              'path'   => '/',
-              'secure' => TRUE
-            );
-
+    if(($this->input->post('email', True)) && ($this->input->post('password', True)) && ($this->input->post('role', True))){
+      $data['title']='Bienvenue dans votre espace personnel';
+      $email = $this->input->post('email');
+      $password = $this->input->post('password');
+      $this->security->xss_clean($email);
+      $key = "Gogeta2000.";
+      $this->security->xss_clean($password);
+        if($this->input->post('role')=='client'){
+          $this->load->model('client_model');
+          $clientlog= $this->client_model->get_client($email);
+          if((count($clientlog)>0) && password_verify($password,$clientlog[0]['password_client'])){
+            $encryption_value = $key.'false'.$email;
+            $encryption_value = hash("sha256",$encryption_value);
+            set_cookie('the_good_one',$encryption_value,86000);
+            set_cookie('email',$email,86000);
+            set_cookie('type',hash("sha256",$this->input->post('role')),86000);
+            $data['titre'] = "Page Administrateurs";
+            $data['key'] = $key;
+            $data['key2'] = get_cookie('email',true);
             $this->load->view('template/header', $data);
-            $this->load->view('pages/admin/navbar_admin', $data);
-            $this->load->view('pages/admin/homeA', $data);
+            $this->load->view('pages/admin/homeC', $data);
             $this->load->view('template/footer', $data);
+
         }else{
-          //redirect("/","refresh");
+          $data['connexion'] = "error";
+          redirect("/");
+
         }
-      }
     }else{
-      echo 'probleme';
+        $this->load->model('admin_model');
+        $adminLog= $this->admin_model->get_admin_by_mail($email);
+        if((count($adminLog)>0) && password_verify($password,$adminLog[0]['password_admin'])){
+          $encryption_value = $key.'true'.$email;
+          $encryption_value = hash("sha256",$encryption_value);
+          set_cookie('the_good_one',$encryption_value,86000);
+          set_cookie('email',$email,86000);
+          set_cookie('the_good_right',hash("sha256",$key).get_cookie('niveau'),86000);
+          set_cookie('niveau',hash("sha256",$adminLog[0]['privilege_admin']),86000);
+          $data['titre'] = "Page Administrateurs";
+          $data['key'] = $key;
+          $data['key2'] = get_cookie('email',true);
+          $this->load->view('template/header', $data);
+          echo realpath('template/header.php');
+          $this->load->view('pages/admin/homeA', $data);
+          $this->load->view('template/footer', $data);
+      }else{
+        $data['connexion'] = 'error';
+        redirect("/");
+
+      }
     }
+  }else{
+    redirect("/");
   }
+}
 }
