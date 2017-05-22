@@ -29,8 +29,23 @@ class Client_model extends CI_Model {
 
         public function get_all_clients()
         {
-                $query = $this->db->get('Client');
-                return $query->result_array();
+          $this->db->select('*');
+          $this->db->from('Client');
+          $this->db->join('Type_client', 'Client.id_client = Type_client.id_type');
+          $query = $this->db->get();
+          return $query->result_array();
         }
+
+        public function update_client($newvalues,$id_client)
+        {
+            $this->db->where('id_client', $id_client);
+            $this->db->update('Client', $newvalues);
+        }
+
+        public function delete_client($id_client)
+        {
+            $this->db->delete('Client',array('id_client' => $id_client));
+        }
+
 
 }

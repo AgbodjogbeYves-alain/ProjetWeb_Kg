@@ -53,7 +53,8 @@ $route['default_controller'] = 'accueilCtrl/accueil';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['connect'] = 'accueilCtrl/connexion';
-
+$route['gestionclient/edit/(:num)']['POST'] = 'adminpartctrl/selecteur/$1';
+$route['/createclient']['POST'] = 'adminpartctrl/createclient';
 //$route['test'] = 'accueilCtrl/test';
 //$route['getContrats'] = 'contratCtrl/getContrats';
 //$route['getAdmins'] = 'adminsCtrl/getAdmins';
