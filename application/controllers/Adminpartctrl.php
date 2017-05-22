@@ -70,7 +70,7 @@ class Adminpartctrl extends CI_Controller {
             "password_client" => $password
           );
           $this->load->model('Client_model');
-          $this->create_client($client);
+          $this->client_model->create_client($client);
 
         }else{
           $data['error'] = 'error';

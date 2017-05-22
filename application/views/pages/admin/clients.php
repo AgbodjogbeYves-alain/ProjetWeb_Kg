@@ -5,7 +5,7 @@
         </h1>
 
         <div>
-         <button  id="openmodal" class="fluid blue ui button">Ajout Client</button>
+         <a class="ui fluid blue button" id="openmodal" <i class="sign in icon"></i>Ajout Client</a>
         </div><br><br>
         <?php
             $j = 0;
@@ -68,7 +68,7 @@ EOT;
                   Ajout Client
                 </div>
               </h2>
-              <form class="ui large form" method="put" action='/createclient?>'>
+              <form class="ui large form" method="post" action='createclient'>
                 <div class="ui stacked segment">
                   <div class="field">
                     <div class="ui left icon input">
@@ -137,37 +137,38 @@ $(document).ready(function() {
         $(this).focus();
         $('.ui.positive.button').remove('hidden');
     });
-});
 
-    $(document)
-      .ready(function() {
-        $('.ui.form')
-          .form({
-            fields: {
-              email: {
-                identifier  : 'email',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Entrez un email'
-                  },
-                  {
-                    type   : 'email',
-                    prompt : 'Entrez un e-mail valide'
-                  }
-                ]
+    $('.ui.form')
+      .form({
+        fields: {
+          email: {
+            identifier  : 'email',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Entrez un email'
               },
-              s {
-                identifier  : 'password',
-                rules: [
-                  {
-                    type   : 'empty',
-                    prompt : 'Entrez un mot de passe'
-                  },
-                  {
-                    type   : 'length[6]',
-                    prompt : 'Votre mot de passe doit avoir plus de 6 caractères'
-                  }
-                ]
-              }}});});
+              {
+                type   : 'email',
+                prompt : 'Entrez un e-mail valide'
+              }
+            ]
+          },
+          password: {
+            identifier  : 'password',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Entrez un mot de passe'
+              },
+              {
+                type   : 'length[3]',
+                prompt : 'Votre mot de passe doit avoir plus de 3 caractères'
+              }
+            ]
+          }
+        }
+      })
+    ;
+});
 </script>

@@ -47,5 +47,9 @@ class Client_model extends CI_Model {
             $this->db->delete('Client',array('id_client' => $id_client));
         }
 
+        public function create_client($array){
+           $this->db->create('Client',$array);
+        }
+
 
 }
