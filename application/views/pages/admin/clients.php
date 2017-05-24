@@ -1,17 +1,26 @@
 <br><br><br><br>
 <div class="ui main text container">
-        <h1 class="ui center aligned teal segment header">Bienvenue sur le gestionnaire de Clients
+        <h1 class="ui center aligned blue segment header">Bienvenue sur le gestionnaire de Clients
             <div class="sub header">Double cliquer sur les informations d'un client pour les modifier.</div>
         </h1>
 
         <div>
          <a class="ui fluid blue button" id="openmodal" <i class="sign in icon"></i>Ajout Client</a>
-        </div><br><br>
+        </div><br>
+        <form class="ui fluid" method="post" action='<?php echo base_url("clients/get/search")?>'>
+        <div class="ui fluid action input" >
+
+          <input type="text" name='research' placeholder="Search...">
+          <button class="ui blue button" type="submit">Search</button>
+        </div><br>
+        </form>
+
         <?php
-            $j = 0;
             foreach ($listeC as $key => $value) {
 
-                echo '<form class="ui form" method="post" action="gestionclient/edit/'.$value['id_client'].'">';
+                echo '<form class="ui form" method="post" action="';
+                echo base_url('clients/putdelete/'.$value['id_client']);
+                echo '">';
                 echo <<<EOT
                     <table class="ui celled table">
                     <thead class="center aligned"> <!-- En-tête du tableau -->
@@ -38,24 +47,25 @@ EOT;
                     echo "<td name=".key($value)." id=".key($value).">".$value["libelle"]."</td>";
                 echo<<<EOT
                 </tbody>
-                      <tfoot class="full-width">
+                  <div>
+                      <tfoot>
                         <tr>
-                          <th>
-                          <div class="ui right buttons">
+                          <td></td>
+                          <td>
+                          <div class="ui buttons">
                             <i class="refresh icon"></i>
-                            <input class="ui positive button" type='submit' name='selectButton' value='Mise a jour'></input>
+                            <input class="ui fluid positive button" type='submit' name='selectButton' value='Mise a jour'></input>
                           <div class="or" data-text="ou"></div>
-                          <input type=submit class="ui negative button" name='selectButton' value='Supprimer'>
+                          <input type=submit class="ui negative fluid button" name='selectButton' value='Supprimer'>
                           </div>
                           </th>
                         </tr>
                       </tfoot>
+                  </div>
                 </table>
                 </form>
                 <br>
 EOT;
-
-            $j++;
             }
         ?>
 
@@ -68,7 +78,7 @@ EOT;
                   Ajout Client
                 </div>
               </h2>
-              <form class="ui large form" method="post" action='createclient'>
+              <form class="ui large form" method="post" action='<?php echo base_url("clients/post")?>'>
                 <div class="ui stacked segment">
                   <div class="field">
                     <div class="ui left icon input">
@@ -120,8 +130,7 @@ EOT;
               </form>
             </div>
     </div>
-
-
+  </div>
 
 <script>
 
@@ -135,7 +144,6 @@ $(document).ready(function() {
         var namePlace = $(this).attr("id");
         $(this).html('<input type=text name='+namePlace+' value='+current+'></input>');
         $(this).focus();
-        $('.ui.positive.button').remove('hidden');
     });
 
     $('.ui.form')

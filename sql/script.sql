@@ -1,4 +1,4 @@
-﻿CREATE TABLE "Client" (
+CREATE TABLE "Client" (
 	"id_client" serial NOT NULL,
 	"nom_client" varchar(255) NOT NULL,
 	"descriptif_client" varchar(255) NOT NULL,
@@ -61,19 +61,16 @@ CREATE TABLE "Administrateurs"(
 ) WITH (
   	OIDS=FALSE
 	);
-)
 
 CREATE TABLE "Privileges"(
 	"id_privilege" serial NOT NULL,
 	"libelle" varchar(255) NOT NULL,
-	CONSTRAINT Admin_pk PRIMARY KEY ("id_admin")
+	CONSTRAINT Privilege_pk PRIMARY KEY ("id_privilege")
 ) WITH (
   	OIDS=FALSE
 	);
 
 
-
-ALTER TABLE "Contrat" ADD CONSTRAINT "Contrat_fk0" FOREIGN KEY ("id_client") REFERENCES "Client"("id_client") ON DELETE CASCADE;
 ALTER TABLE "Contrat" ADD CONSTRAINT "Contrat_fk1" FOREIGN KEY ("type_contrat") REFERENCES "Type_contrat"("id_type") ON DELETE CASCADE;
 ALTER TABLE "Client" ADD CONSTRAINT "Client_fk1" FOREIGN KEY ("type_client") REFERENCES "Type_Client"("id_type") ON DELETE CASCADE;
-ALTER TABLE "Administrateurs" ADD CONSTRAINT "Admin_fk1" FOREIGN KEY ("privileges_admin") REFERENCES "Privileges"("id_privilege") ON DELETE CASCADE;
+ALTER TABLE "Administrateurs" ADD CONSTRAINT "Admin_fk1" FOREIGN KEY ("privilege_admin") REFERENCES "Privileges"("id_privilege") ON DELETE CASCADE;

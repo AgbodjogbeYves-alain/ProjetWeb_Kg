@@ -3,31 +3,10 @@
 
 <nav class="ui left vertical sidebar inverted menu">
     <a class="item header" href="#" >Dashboard</a>
-    <div class="ui dropdown item">
-      <div class="text">Gestion Clients</div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-            <div class="item" href="<?php echo base_url("getclients")?>">Voir les clients</div>
-            <div class="item" href="">Ajouter un client</div>
-         </div>
-    </div>
-   <div class="ui dropdown item">
-     <div class="text">Gestion contrats</div>
-       <i class="dropdown icon"></i>
-       <div class="menu">
-           <div class="item" href="<?php echo base_url("getadmins")?>">Liste des administrateurs</div>
-           <div class="item">Creer un nouvel administrateur</div>
-        </div>
-   </div>
-   <div class="ui dropdown item">
-     <div class="text">Gestion contrats</div>
-       <i class="dropdown icon"></i>
-       <div class="menu">
-           <div class="item" href="<?php echo base_url("getcontrats")?>">Voir les contrats</div>
-           <div class="item" >Creer un nouveau contrat</div>
-        </div>
-   </div>
-    <a class="item" href="<?php echo base_url("deconnexion")?>"><i class="sign out icon"></i>Deconnexion</a>
+    <a class="ui item" href="<?php echo base_url("clients/get/0")?>">Gestion Clients</a>
+    <a class="ui item"  href="<?php echo base_url("admins/get/0")?>">Gestion Administrateurs</a>
+    <a class="ui item" href="<?php echo base_url("contrats")?>">Gestion Contrats</a>
+    <a class="item" href="<?php echo base_url("admin/deconnexion")?>"><i class="sign out icon"></i>Deconnexion</a>
 </nav>
 
 
@@ -40,22 +19,14 @@
                 <span class="text">Menu</span>
             </a>
             <a class="item header" href="#" >Dashboard</a>
-           <a class="ui item" href="<?php echo base_url("getclients")?>">Gestion Clients</a>
-           <a class="ui dropdown item"  href="<?php echo base_url("getadmins")?>">Gestion Administrateurs</a>
-           <div class="ui dropdown item">
-             <div class="text">Gestion contrats</div>
-               <i class="dropdown icon"></i>
-               <div class="menu">
-                   <div class="item" href="<?php echo base_url("getcontrats")?>">Voir les contrats</div>
-                   <div class="item">Creer un nouveau contrat</div>
-                </div>
-           </div>
+           <a class="ui item" href="<?php echo base_url("clients/get/0")?>">Gestion Clients</a>
+           <a class="ui item"  href="<?php echo base_url("admins/get/0")?>">Gestion Administrateurs</a>
+           <div class="ui item" href="<?php echo base_url("contrats/get/0")?>">Gestion Contrats</div>
         </div>
         <div class="right menu">
-           <a class="item" href='<?php echo base_url("deconnexion")?>'><i class="sign out icon" ></i>Deconnexion</a>
+           <a class="item" href='<?php echo base_url("admins/deconnexion")?>'><i class="sign out icon" ></i>Deconnexion</a>
         </div>
     </div>
-
 </nav>
 <script>
 $(document).ready(function() {

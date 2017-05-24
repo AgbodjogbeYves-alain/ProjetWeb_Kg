@@ -52,11 +52,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'accueilCtrl/accueil';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['clients/get/search'] = 'clientadctrl/getclients/$1';
+$route['clients/get/(:num)'] = 'clientadctrl/getclients/$1';
+$route['clients/putdelete/(:num)'] = 'clientadctrl/selecteur/$1';
+$route['clients/post'] = 'clientadctrl/createclient';
+$route['clients/delete/(:num)'] = 'clientadctrl/supclient/$1';
+
+
+
+$route['admins/get/search'] = 'adminsadctrl/getadmins/$1';
+$route['admins/get/(:num)'] = 'adminsadctrl/getadmins/$1';
+$route['admins/putdelete/(:num)'] = 'adminsadctrl/selecteur/$1';
+$route['admins/post'] = 'adminsadctrl/createadmin';
+$route['admins/delete/(:num)'] = 'adminsadctrl/supadmin/$1';
+
+
+
+
+
+
+
 $route['connect'] = 'accueilCtrl/connexion';
-$route['gestionclient/edit/(:num)']['POST'] = 'adminpartctrl/selecteur/$1';
-$route['createclient'] = 'adminpartctrl/createclient';
-//$route['test'] = 'accueilCtrl/test';
-//$route['getContrats'] = 'contratCtrl/getContrats';
-//$route['getAdmins'] = 'adminsCtrl/getAdmins';
-$route['getclients'] = 'adminpartctrl/getclients';
-$route['deconnexion'] = 'adminsCtrl/deconnexion';
+$route['admins/deconnexion'] = 'clientadctrl/deconnexion';

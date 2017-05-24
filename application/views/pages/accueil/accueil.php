@@ -125,7 +125,7 @@
   <div class="ui middle aligned center aligned grid">
     <div class="column">
       <h2 class="ui teal image header">
-        <img src="assets/images/logo.png" class="image">
+        <i class="sign in icon"></i>
         <div class="content">
           Fenêtre de connexion
         </div>
@@ -147,7 +147,7 @@
           <div class="ui fluid selection dropdown">
               <input type="hidden" name="role">
               <i class="dropdown icon"></i>
-              <div class="default text">Select Friend</div>
+              <div class="default text">Client ou Admin?</div>
               <div class="menu">
                 <div class="item" data-value="client">
                   <i class="suitcase icon"></i>
