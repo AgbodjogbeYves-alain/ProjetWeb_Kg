@@ -29,7 +29,7 @@ class AccueilCtrl extends CI_Controller {
       if(($this->input->post('email', True)) && ($this->input->post('password', True)) && ($this->input->post('role', True))){
         $data['title']='Bienvenue dans votre espace personnel';
         $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $password = $key.$this->input->post('password');
         $this->security->xss_clean($email);
         $this->security->xss_clean($password);
         if($this->input->post('role')=='client'){
@@ -62,14 +62,13 @@ class AccueilCtrl extends CI_Controller {
         if((count($adminLog)>0) && password_verify($password,$adminLog[0]['password_admin'])){
           $encryption_value = $key.'true'.$email;
           $encryption_value = hash("sha256",$encryption_value);
+          $time = $this->encryption->encrypt(time()+86000);
           set_cookie('the_good_one',$encryption_value,86000);
-          set_cookie('validity',hash("sha256",time()+86000),86000);
+          set_cookie('validity',$time,86000);
           set_cookie('email',$email,86000);
           set_cookie('the_good_right',hash("sha256",$key).get_cookie('niveau'),86000);
           set_cookie('niveau',hash("sha256",$adminLog[0]['privilege_admin']),86000);
           $data['titre'] = "Page Administrateurs";
-          $data['key'] = $key;
-          $data['key2'] = get_cookie('email',true);
           $this->load->view('template/header', $data);
           $this->load->view('template/navbar_admin', $data);
           $this->load->view('template/footer', $data);

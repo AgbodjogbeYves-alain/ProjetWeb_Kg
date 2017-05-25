@@ -5,8 +5,8 @@
     <a class="item header" href="#" >Dashboard</a>
     <a class="ui item" href="<?php echo base_url("clients/get/0")?>">Gestion Clients</a>
     <a class="ui item"  href="<?php echo base_url("admins/get/0")?>">Gestion Administrateurs</a>
-    <a class="ui item" href="<?php echo base_url("contrats")?>">Gestion Contrats</a>
-    <a class="item" href="<?php echo base_url("admin/deconnexion")?>"><i class="sign out icon"></i>Deconnexion</a>
+    <a class="ui item" href="<?php echo base_url("contrats/get/0")?>">Gestion Contrats</a>
+    <a class="ui item" href="<?php echo base_url("admin/deconnexion")?>"><i class="sign out icon"></i>Deconnexion</a>
 </nav>
 
 
@@ -21,7 +21,7 @@
             <a class="item header" href="#" >Dashboard</a>
            <a class="ui item" href="<?php echo base_url("clients/get/0")?>">Gestion Clients</a>
            <a class="ui item"  href="<?php echo base_url("admins/get/0")?>">Gestion Administrateurs</a>
-           <div class="ui item" href="<?php echo base_url("contrats/get/0")?>">Gestion Contrats</div>
+           <a class="ui item" href="<?php echo base_url("contrats/get/0")?>">Gestion Contrats</a>
         </div>
         <div class="right menu">
            <a class="item" href='<?php echo base_url("admins/deconnexion")?>'><i class="sign out icon" ></i>Deconnexion</a>

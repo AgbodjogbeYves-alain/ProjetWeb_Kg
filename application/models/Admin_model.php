@@ -11,8 +11,9 @@ class Admin_model extends CI_Model {
         }
 
         public function isIn($email){
-          $this->db->get_where('Administrateurs',array('email_admin'=>$email));
-          return $this->db->count_all_results()===0;
+          $query = $this->db->get_where('Administrateurs',array('email_admin'=>$email));
+          $query = $query->result_array();
+          return  count($query);
         }
 
         public function get_admin_by_mail($email){
@@ -42,19 +43,19 @@ class Admin_model extends CI_Model {
           return $query->result_array();
         }
 
-        public function update_admins($newvalues,$id_Administrateur)
+        public function update_admins($newvalues,$id_administrateur)
         {
-            $this->db->where('id_Administrateur', $id_Administrateur);
-            $this->db->update('Administrateur', $newvalues);
+            $this->db->where('id_admin', $id_administrateur);
+            $this->db->update('Administrateurs', $newvalues);
         }
 
         public function delete_admins($id_Administrateur)
         {
-            $this->db->delete('Administrateur',array('id_Administrateur' => $id_Administrateur));
+            $this->db->delete('Administrateurs',array('id_admin' => $id_Administrateur));
         }
 
-        public function create_admins($array){
-           $this->db->insert('Administrateur',$array);
+        public function create_admin($array){
+           $this->db->insert('Administrateurs',$array);
         }
 
         public function get_somes_admins($param)

@@ -10,13 +10,23 @@ class Client_model extends CI_Model {
 
         }
 
+        public function isIn($email){
+          $query = $this->db->get_where('Client',array('email_client'=>$email));
+          $query = $query->result_array();
+          return count($query);
+        }
+
+        public function get_clientid_by_mail($email){
+          $query = $this->db->select('id_client')->get_where('Client',array('email_client'=>$email));
+          return $query->result_array();
+        }
 
         public function get_client($email){
           $query = $this->db->get_where('Client',array('email_client'=>$email));
           return $query->result_array();
         }
 
-        
+
 
         public function login_client($email,$password){
             $query = $this->db->get_where('Client',array('email_client' => $email,'password_client' => $password ));

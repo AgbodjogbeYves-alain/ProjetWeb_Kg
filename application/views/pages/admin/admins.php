@@ -1,6 +1,6 @@
 <br><br><br><br>
 <div class="ui main text container">
-        <h1 class="ui center aligned blue segment header">Bienvenue sur le gestionnaire des Administratrateurs
+        <h1 class="ui center aligned blue segment header">Bienvenue sur le gestionnaire des Administrateurs
             <div class="sub header">Double cliquer sur les informations d'un Administrateur pour les modifier.</div>
         </h1>
 
@@ -19,7 +19,7 @@
             foreach ($listeC as $key => $value) {
 
                 echo '<form class="ui form" method="post" action="';
-                echo base_url('admins/putdelete/'.$value['id_admin']);
+                echo base_url('admins/putdelete/'.$value['id_admin']);;
                 echo '">';
                 echo <<<EOT
                     <table class="ui celled table">
@@ -30,7 +30,7 @@
                         <th>Numero Admin</th>
                         <th>E-mail</th>
                         <th>Privilège</th>
-                        <th></th>
+                        <th> Changer le mot de passe</th>
                     </tr>
                     </thead>
                     <tbody> <!-- Corps du tableau -->
@@ -40,99 +40,98 @@ EOT;
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["prenom_admin"]."</td>";
                     next($value);
+                    next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["numero_admin"]."</td>";
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["email_admin"]."</td>";
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["libelle"]."</td>";
-                    echo '<td> <input class=ui fluid positive button type=submit name=selectButton value=Changerpasse></input>';
+                    echo '<td> <input class=ui button type=submit name=selectButton value=Changer></input>';
                 echo<<<EOT
                 </tbody>
-                  <div>
-                      <tfoot>
-                        <tr>
-                          <td></td>
-                          <td>
-                          <div class="ui buttons">
-                            <i class="refresh icon"></i>
-                            <input class="ui fluid positive button" type='submit' name='selectButton' value='Mise a jour'></input>
-                          <div class="or" data-text="ou"></div>
-                          <input type=submit class="ui negative fluid button" name='selectButton' value='Supprimer'>
-                          </div>
-                          </th>
-                        </tr>
-                      </tfoot>
-                  </div>
                 </table>
+                  <div class='ui fluid container'>
+                          <div class="ui fluid buttons">
+                            <i class="refresh icon"></i>
+                            <input class="ui positive button" type='submit' name='selectButton' value='Mise a jour'></input>
+                          <div class="or" data-text="ou"></div>
+                          <input type=submit class="ui negative button" name='selectButton' value='Supprimer'>
+                          </div>
+                  </div>
                 </form>
-                <br>
+                <br><br><br><br><br>
 EOT;
             }
         ?>
 <!---Modal ajout admin--->
-        <div class="ui small modal"> <i class="close icon"></i>
-          <div class="ui middle aligned center aligned grid">
-            <div class="column">
-              <h2 class="ui teal image header">
-                <i class="add user icon"></i>
-                <div class="content">
-                  Ajout Client
-                </div>
-              </h2>
-              <form class="ui large form" method="post" action='<?php echo base_url("clients/post")?>'>
-                <div class="ui stacked segment">
-                  <div class="field">
-                    <div class="ui left icon input">
-                      <i class="user icon"></i>
-                      <input type="text" name="nom" placeholder="Nom de l'Entreprise ou du Particulier">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui left icon input">
-                      <i class="user icon"></i>
-                      <input type="text" name="email" placeholder="E-mail de l'Entreprise ou du Particulier">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui left icon input">
-                      <i class="lock icon"></i>
-                      <input type="password" name="password" placeholder="Mot de passe temporaire">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui left icon input">
-                      <i class="lock icon"></i>
-                      <input type="text" name="descriptif" placeholder="Decrivez l'entreprise en quelques mots">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="ui left icon input">
-                      <i class="lock icon"></i>
-                      <input type="text" name="representant" placeholder="Representant">
-                    </div>
-                  </div>
-                  <div class="ui fluid selection dropdown">
-                      <input type="hidden" name="type">
-                      <i class="dropdown icon"></i>
-                      <div class="default text">Particulier ou Entreprise?</div>
-                      <div class="menu">
-                        <div class="item" data-value="particulier">
-                          <i class="suitcase icon"></i>
-                        Particulier
-                        </div>
-                        <div class="item" data-value="entreprise">
-                          <i class="user icon"></i>Entreprise
-                        </div>
-                      </div>
-                    </div><br>
-                  <div class="ui fluid large teal submit button">Ajouter</div>
-                </div>
-                <div class="ui error message"></div>
-              </form>
-            </div>
+
     </div>
   </div>
-</div>
+  <div class="ui small modal"> <i class="close icon"></i>
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
+        <h2 class="ui teal image header">
+          <i class="add user icon"></i>
+          <div class="content">
+            Ajout Administrateur
+          </div>
+        </h2>
+        <form class="ui large form" method="post" action='<?php echo base_url("admins/post")?>'>
+          <div class="ui stacked segment">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="nom" placeholder="Nom du nouvel admin">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="prenom" placeholder="Prenom du nouvel admin">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="email" placeholder="E-mail l'admin">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" placeholder="Mot de passe temporaire">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="text" name="numero" placeholder="Numero de l'admin">
+              </div>
+            </div>
+            <div class="ui fluid selection dropdown">
+                <input type="hidden" name="privilege">
+                <i class="dropdown icon"></i>
+                <div class="default text">C'est un?</div>
+                <div class="menu">
+                  <div class="item" data-value="0">
+                    <i class="suitcase icon"></i>
+                  Tous les droits
+                  </div>
+                  <div class="item" data-value="1">
+                    <i class="user icon"></i>Commercial
+                  </div>
+                  <div class="item" data-value="2">
+                    <i class="user icon"></i>Autre
+                  </div>
+                </div>
+                </div>
+                <div class="ui error message"></div>
+              </div><br>
+            <div class="ui fluid large teal submit button">Ajouter</div>
+          </div>
+
+        </form>
+      </div>
 
 <script>
 
@@ -174,6 +173,46 @@ $(document).ready(function() {
               {
                 type   : 'length[3]',
                 prompt : 'Votre mot de passe doit avoir plus de 3 caractères'
+              }
+            ]
+          },
+          nom: {
+            identifier  : 'name',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Entrez un nom'
+              },
+              {
+                type   : 'regExp[/^[a-zA-Z]+]',
+                prompt : 'Entrer un nom valide sans caractères spéciaux'
+              }
+            ]
+          },
+          prenom: {
+            identifier  : 'prenom',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Entrez un prenom'
+              }
+            ]
+          },
+        numero: {
+            identifier  : 'numero',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Entrez un numero'
+              }
+            ]
+          },
+          privilege: {
+            identifier  : 'privilege',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Chosissez un  privilege'
               }
             ]
           }

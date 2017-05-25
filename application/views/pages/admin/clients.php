@@ -47,22 +47,15 @@ EOT;
                     echo "<td name=".key($value)." id=".key($value).">".$value["libelle"]."</td>";
                 echo<<<EOT
                 </tbody>
-                  <div>
-                      <tfoot>
-                        <tr>
-                          <td></td>
-                          <td>
-                          <div class="ui buttons">
-                            <i class="refresh icon"></i>
-                            <input class="ui fluid positive button" type='submit' name='selectButton' value='Mise a jour'></input>
-                          <div class="or" data-text="ou"></div>
-                          <input type=submit class="ui negative fluid button" name='selectButton' value='Supprimer'>
-                          </div>
-                          </th>
-                        </tr>
-                      </tfoot>
-                  </div>
                 </table>
+                      <div class="ui container">
+                          <div class="ui fluid buttons">
+                            <i class="refresh icon"></i>
+                            <input class="ui positive button" type='submit' name='selectButton' value='Mise a jour'></input>
+                          <div class="or" data-text="ou"></div>
+                          <input type=submit class="ui negative button" name='selectButton' value='Supprimer'>
+                          </div>
+                        </div>
                 </form>
                 <br>
 EOT;

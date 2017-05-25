@@ -68,9 +68,9 @@ $route['admins/post'] = 'adminsadctrl/createadmin';
 $route['admins/delete/(:num)'] = 'adminsadctrl/supadmin/$1';
 
 
-
-
-
+$route['contrats/get/search'] = 'contratsadctrl/getcontrats/$1';
+$route['contrats/get/(:num)'] = 'contratsadctrl/getcontrats/$1';
+$route['contrats/post'] = 'contratsadctrl/createcontrat';
 
 
 $route['connect'] = 'accueilCtrl/connexion';

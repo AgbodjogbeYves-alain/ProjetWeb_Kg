@@ -14,11 +14,14 @@ class Clientadctrl extends CI_Controller {
 
      }
 
-  public function controlValidity(){
-    $key=$this->config->item('key');
-    $email = get_cookie('email');
-    return hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && hash("sha256",time())<=get_cookie('validity');
-  }
+     public function controlValidity(){
+       $key=$this->config->item('key');
+       $email = get_cookie('email');
+       $time = get_cookie('validity');
+       $time = $this->encryption->decrypt($time);
+       return (hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
+     }
+     
   public function getclients($num){
     if($this->controlValidity()){
       $this->load->model('client_model');
