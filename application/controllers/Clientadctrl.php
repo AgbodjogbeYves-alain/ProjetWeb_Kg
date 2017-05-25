@@ -21,7 +21,7 @@ class Clientadctrl extends CI_Controller {
        $time = $this->encryption->decrypt($time);
        return (hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
      }
-     
+
   public function getclients($num){
     if($this->controlValidity()){
       $this->load->model('client_model');
@@ -97,17 +97,30 @@ class Clientadctrl extends CI_Controller {
               $descrip = $this->security->xss_clean($this->input->post('descriptif'));
               $representant = $this->security->xss_clean($this->input->post('representant'));
               $password = password_hash($password,PASSWORD_BCRYPT);
-              $newClient =array(
-                'nom_client'=> $nom,
-                'descriptif_client' => $descrip,
-                'email_client' => $email,
-                'representant' => $representant,
-                'type_client' => $role,
-                'password_client' => $password
-              );
-              $this->load->model('Client_model');
-              $this->client_model->create_client($newClient);
-              redirect("clients/get/0");
+              if($this->client_model->isIn($email)==0){
+                $newClient =array(
+                  'nom_client'=> $nom,
+                  'descriptif_client' => $descrip,
+                  'email_client' => $email,
+                  'representant' => $representant,
+                  'type_client' => $role,
+                  'password_client' => $password
+                );
+                $this->load->model('Client_model');
+                $this->client_model->create_client($newClient);
+                redirect("clients/get/0");
+              }else{
+                $data['title'] = 'Liste des clients';
+                $data['listeC'] = $this->client_model->get_all_clients(0);
+                $data['error'] = "Cet email est déja présent";
+                $this->load->view('template/header', $data);
+                $this->load->view('template/navbar_admin', $data);
+                $this->load->view("template/error",$data);
+                $this->load->view('pages/admin/clients', $data);
+                $this->load->view('template/pagination',$data);
+                $this->load->view('template/footer', $data);
+              }
+
 
             }else{
               redirect("clients/get/0");

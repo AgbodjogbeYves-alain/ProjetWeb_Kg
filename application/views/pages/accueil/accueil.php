@@ -1,13 +1,4 @@
 <!-- Page Contents -->
-<?php if($connexion == 'error'){?>
-  <div class="ui negative message">
-  <i class="close icon"></i>
-  <div class="header">
-    Erreur de connexion
-  </div>
-    <p>Veuillez verifier votre e-mail ou votre mot de passe
-  </p></div>
-<?php }?>
 
   <div class="ui inverted vertical masthead center aligned segment" id="back">
     <div class="ui large secondary inverted pointing menu">

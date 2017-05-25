@@ -44,7 +44,7 @@ EOT;
                 <div>
 EOT;
                   echo "<a class='ui fluid positive button' type='submit' href=";
-                  echo base_url('contrats_upload/'.$value['liens_contrat']);
+                  echo $value['liens_contrat'];
                   echo<<<EOT
                   download="contratT">Telecharger</a>
                 </div>
@@ -90,7 +90,7 @@ EOT;
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000000000">
                 <input type="file" name="upload" placeholder="Contrat a uploader">
               </div>
             </div>

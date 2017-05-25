@@ -19,6 +19,7 @@ class AccueilCtrl extends CI_Controller {
       $data['title'] = 'KGE-Accueil'; // Capitalize the first letter
       $data['connexion'] = '';
       $this->load->view('template/header', $data);
+      $this->load->view('template/error', $data);
       $this->load->view('template/navbar_accueil', $data);
       $this->load->view('pages/accueil/accueil', $data);
       $this->load->view('template/footer', $data);
@@ -52,6 +53,7 @@ class AccueilCtrl extends CI_Controller {
         }else{
           $data['connexion'] = "error";
           $this->load->view('template/header', $data);
+          $this->load->view('template/error', $data);
           $this->load->view('pages/accueil/navbar_accueil', $data);
           $this->load->view('pages/accueil/accueil', $data);
           $this->load->view('template/footer', $data);
@@ -73,8 +75,9 @@ class AccueilCtrl extends CI_Controller {
           $this->load->view('template/navbar_admin', $data);
           $this->load->view('template/footer', $data);
       }else{
-        $data['connexion'] = 'error';
+        $data['error'] = 'Veuillez verifier vos identifiants';
         $this->load->view('template/header', $data);
+        $this->load->view('template/error', $data);
         $this->load->view('template/navbar_accueil', $data);
         $this->load->view('pages/accueil/accueil', $data);
         $this->load->view('template/footer', $data);
@@ -82,8 +85,9 @@ class AccueilCtrl extends CI_Controller {
       }
     }
   }else{
-    $data['connexion'] = 'error';
+    $data['error'] = 'Veuillez remplir tous les champs';
     $this->load->view('template/header', $data);
+    $this->load->view('template/error', $data);
     $this->load->view('template/navbar_accueil', $data);
     $this->load->view('pages/accueil/accueil', $data);
     $this->load->view('template/footer', $data);

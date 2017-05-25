@@ -24,7 +24,6 @@ class Adminsadctrl extends CI_Controller {
 
 
   public function getadmins($num){
-    print_r($this->estAdmin());
     if($this->estAdmin()){
       if($this->controlValidity()){
         $this->load->model('admin_model');
@@ -48,9 +47,11 @@ class Adminsadctrl extends CI_Controller {
         }
 
       }else{
+        $data['error'] = 'Erreur d\'authentification';
         $this->deconnexion();
       }
     }else{
+      $data['error'] = 'Erreur d\'authentification';
       $this->deconnexion();
     }
 
@@ -64,9 +65,11 @@ class Adminsadctrl extends CI_Controller {
         $this->admin_model->delete_admins($id_admin);
         redirect('admins/get/0');
         }else{
+          $data['error'] = 'Erreur d\'authentification';
           $this->deconnexion();
           }
       }else{
+        $data['error'] = 'Erreur d\'authentification';
         $this->deconnexion();
       }
     }
@@ -100,26 +103,42 @@ class Adminsadctrl extends CI_Controller {
                 $numero = $this->security->xss_clean($this->input->post('numero'));
                 $privilege = $this->security->xss_clean($this->input->post('privilege'));
                 $password = $key.$password;
-                $password = password_hash($password,PASSWORD_BCRYPT);
-                $newadmin =array(
-                  'nom_admin'=> $nom,
-                  'prenom_admin' => $prenom,
-                  'email_admin' => $email,
-                  'privilege_admin' => $privilege,
-                  'password_admin' => $password,
-                  'numero_admin'=> $nom,
-                );
-                $this->load->model('admin_model');
-                $this->admin_model->create_admin($newadmin);
-                redirect("admins/get/0");
+                if($this->admin_model->isIn($email)==0){
+                  $password = password_hash($password,PASSWORD_BCRYPT);
+                  $newadmin =array(
+                    'nom_admin'=> $nom,
+                    'prenom_admin' => $prenom,
+                    'email_admin' => $email,
+                    'privilege_admin' => $privilege,
+                    'password_admin' => $password,
+                    'numero_admin'=> $nom,
+                  );
+                  $this->load->model('admin_model');
+                  $this->admin_model->create_admin($newadmin);
+                  redirect("admins/get/0");
+                }else{
+                  $data['title'] = 'Liste des admins';
+                  $data['listeC'] = $this->admin_model->get_all_admins(0);
+                  $data['error'] = 'Cet email est déja utilisé';
+                  $this->load->view('template/header', $data);
+                  $this->load->view('template/navbar_admin', $data);
+                  $this->load->view("template/error",$data);
+                  $this->load->view('pages/admin/admins', $data);
+                  $this->load->view('template/pagination',$data);
+                  $this->load->view('template/footer', $data);
+                }
+
 
               }else{
+                $data['error'] = 'Veuillez entrer tout les champs s\'il vous plait';
                 redirect("admins/get/0");
               }
           }else{
+            $data['error'] = 'Erreur d\'authentification';
             $this->deconnexion();
           }
         }else{
+          $data['error'] = 'Erreur d\'authentification';
         $this->deconnexion();
       }
 }
@@ -165,6 +184,7 @@ class Adminsadctrl extends CI_Controller {
             $this->admin_model->update_admins($newvalues,$id_admin);
             redirect('admins/get/0');
           }else{
+            $data['error'] = 'Veuillez entrer tout les champs s\'il vous plait';
             redirect('admins/get/0');
           }
         }else{
