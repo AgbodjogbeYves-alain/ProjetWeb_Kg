@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Clientadctrl extends CI_Controller {
+class Clientsadctrl extends CI_Controller {
 
   public function __construct()
      {
@@ -11,6 +11,8 @@ class Clientadctrl extends CI_Controller {
              $this->load->helper('cookie');
              $this->load->helper('security');
              $this->load->library('encryption');
+             $this->load->model('admin_model');
+               $this->load->model('client_model');
 
      }
 
@@ -19,12 +21,12 @@ class Clientadctrl extends CI_Controller {
        $email = get_cookie('email');
        $time = get_cookie('validity');
        $time = $this->encryption->decrypt($time);
-       return (hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
+       return ($this->admin_model->isIn($email)>0 && hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
      }
 
   public function getclients($num){
     if($this->controlValidity()){
-      $this->load->model('client_model');
+
       if($this->input->post("research")==null){
         $data['title'] = 'Liste des clients';
         $data['listeC'] = $this->client_model->get_all_clients($num);
@@ -57,7 +59,6 @@ class Clientadctrl extends CI_Controller {
     public function supclient($id_client){
       if($this->controlValidity()){
         $data['tite'] = 'Liste des clients';
-        $this->load->model("client_model");
         $this->client_model->delete_client($id_client);
         redirect('clients/get/0');
       }else{
@@ -80,9 +81,9 @@ class Clientadctrl extends CI_Controller {
     }
 
     public function createclient(){
+      $key=$this->config->item('key');
       if($this->controlValidity()){
           $data['title'] = 'Liste des clients';
-          $this->load->model("client_model");
             if($this->input->post('nom')!==null && $this->input->post('descriptif')!==null && $this->input->post('email')!==null && $this->input->post('password')!==null ){
               $nom = $this->security->xss_clean($this->input->post('nom'));
               $email = $this->security->xss_clean($this->input->post('email'));
@@ -93,7 +94,7 @@ class Clientadctrl extends CI_Controller {
               }else{
                 $role = 1;
               }
-              $password = $key.$password.$email;
+              $password = $key.$password;
               $descrip = $this->security->xss_clean($this->input->post('descriptif'));
               $representant = $this->security->xss_clean($this->input->post('representant'));
               $password = password_hash($password,PASSWORD_BCRYPT);
@@ -114,8 +115,8 @@ class Clientadctrl extends CI_Controller {
                 $data['listeC'] = $this->client_model->get_all_clients(0);
                 $data['error'] = "Cet email est déja présent";
                 $this->load->view('template/header', $data);
-                $this->load->view('template/navbar_admin', $data);
                 $this->load->view("template/error",$data);
+                $this->load->view('template/navbar_admin', $data);
                 $this->load->view('pages/admin/clients', $data);
                 $this->load->view('template/pagination',$data);
                 $this->load->view('template/footer', $data);
@@ -148,7 +149,6 @@ class Clientadctrl extends CI_Controller {
       if($this->controlValidity()){
         if($this->input->post('descriptif_client')!==null || $this->input->post('nom_client')!==null || $this->input->post('email_client')!==null || $this->input->post('type_client')!==null ){
           $data['tite'] = 'Liste des clients';
-          $this->load->model("client_model");
           if($this->input->post('nom_client')!==null){
               $newvalues['nom_client'] = $this->input->post('nom_client');
           }
@@ -159,7 +159,7 @@ class Clientadctrl extends CI_Controller {
             $newvalues['email_client'] = $this->input->post('email_client');
           }
           if($this->input->post('representant')!==null){
-            $newvalues['email_client'] = $this->input->post('representant');
+            $newvalues['representant'] = $this->input->post('representant');
           }
           if($this->input->post('type_client')!==null){
             if($this->input->post('type_client')=='Entreprise'){

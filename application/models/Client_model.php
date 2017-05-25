@@ -16,6 +16,13 @@ class Client_model extends CI_Model {
           return count($query);
         }
 
+        public function get_client_by_id($id){
+          $this->db->select('nom_client,descriptif_client,representant,email_client,libelle');
+          $this->db->join('Type_client', 'Client.type_client = Type_client.id_type');
+          $query=$this->db->get_where('Client',array('id_client'=>$id));
+          return $query->result_array();
+        }
+
         public function get_clientid_by_mail($email){
           $query = $this->db->select('id_client')->get_where('Client',array('email_client'=>$email));
           return $query->result_array();
@@ -26,7 +33,10 @@ class Client_model extends CI_Model {
           return $query->result_array();
         }
 
-
+        public function getpass($id){
+          $query = $this->db->select('password_client')->get_where('Client',array('id_client'=>$id));
+          return $query->result_array();
+        }
 
         public function login_client($email,$password){
             $query = $this->db->get_where('Client',array('email_client' => $email,'password_client' => $password ));

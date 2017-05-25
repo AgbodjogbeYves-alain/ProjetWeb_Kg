@@ -11,7 +11,9 @@ class Contratsadctrl extends CI_Controller {
              $this->load->helper('cookie');
              $this->load->helper('security');
              $this->load->library('encryption');
-
+             $this->load->model('admin_model');
+             $this->load->model('contrats_model');
+             $this->load->model("client_model");
      }
 
   public function controlValidity(){
@@ -19,14 +21,14 @@ class Contratsadctrl extends CI_Controller {
     $email = get_cookie('email');
     $time = get_cookie('validity');
     $time = $this->encryption->decrypt($time);
-    return (hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
+
+    return ($this->admin_model->isIn($email)>0 && hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
   }
 
 
   public function getcontrats($num){
-    if($this->estAdmin()){
       if($this->controlValidity()){
-        $this->load->model('contrats_model');
+
         if($this->input->post("research")==null){
           $data['title'] = 'Liste des contrats';
           $data['listeC'] = $this->contrats_model->get_all_contrats($num);
@@ -49,26 +51,14 @@ class Contratsadctrl extends CI_Controller {
       }else{
         $this->deconnexion();
       }
-    }else{
-      $this->deconnexion();
     }
 
-  }
-
-      public function estAdmin(){
-        $email = get_cookie('email');
-        print($email);
-        $this->load->model("admin_model");
-        return  $this->admin_model->isIn($email)>0;
-      }
 
     public function createcontrat(){
-      if($this->estAdmin()){
         if($this->controlValidity()){
             $key=$this->config->item('key');
             $data['title'] = 'Liste des contrats';
-            $this->load->model("contrats_model");
-            $this->load->model("client_model");
+
             if($this->input->post('email')!==null && $this->input->post('type_contrat')!==null && isset($_FILES['upload'])){
               $email = $this->security->xss_clean($this->input->post('email'));
               if($this->client_model->isIn($email)>0){
@@ -100,11 +90,7 @@ class Contratsadctrl extends CI_Controller {
             $data['error'] = "Veuillez vous reconnecter";
             $this->deconnexion();
           }
-        }else{
-          $data['error'] = "Problème de droits";
-          $this->deconnexion();
-      }
-    }
+        }
 
     public function upload_contrat($type,$mail){
         $dossier = $_SERVER["DOCUMENT_ROOT"].'/ProjetWeb_Kg/contrats_upload/';
@@ -145,10 +131,9 @@ class Contratsadctrl extends CI_Controller {
 
     public function deconnexion(){
       delete_cookie('the_good_one');
-      delete_cookie('the_good_right');
       delete_cookie('email');
       delete_cookie('validity');
-      delete_cookie('niveau');
+      delete_cookie('id');
       if(isset($data['error'])){
         $data['error']=$data['error'];
       }

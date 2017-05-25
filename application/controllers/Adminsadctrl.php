@@ -11,6 +11,7 @@ class Adminsadctrl extends CI_Controller {
              $this->load->helper('cookie');
              $this->load->helper('security');
              $this->load->library('encryption');
+             $this->load->model('admin_model');
 
      }
 
@@ -19,14 +20,14 @@ class Adminsadctrl extends CI_Controller {
     $email = get_cookie('email');
     $time = get_cookie('validity');
     $time = $this->encryption->decrypt($time);
-    return (hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
+    $this->admin_model->isIn($email)>0;
+    return ($this->admin_model->isIn($email)>0 && hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
   }
 
 
   public function getadmins($num){
-    if($this->estAdmin()){
       if($this->controlValidity()){
-        $this->load->model('admin_model');
+
         if($this->input->post("research")==null){
           $data['title'] = 'Liste des admins';
           $data['listeC'] = $this->admin_model->get_all_admins($num);
@@ -50,35 +51,18 @@ class Adminsadctrl extends CI_Controller {
         $data['error'] = 'Erreur d\'authentification';
         $this->deconnexion();
       }
-    }else{
-      $data['error'] = 'Erreur d\'authentification';
-      $this->deconnexion();
     }
 
-  }
 
     public function supadmin($id_admin){
-        if($this->estAdmin()){
       if($this->controlValidity()){
         $data['tite'] = 'Liste des admins';
-        $this->load->model("admin_model");
         $this->admin_model->delete_admins($id_admin);
         redirect('admins/get/0');
         }else{
           $data['error'] = 'Erreur d\'authentification';
           $this->deconnexion();
           }
-      }else{
-        $data['error'] = 'Erreur d\'authentification';
-        $this->deconnexion();
-      }
-    }
-
-      public function estAdmin(){
-        $email = get_cookie('email');
-        print($email);
-        $this->load->model("admin_model");
-        return  $this->admin_model->isIn($email)>0;
       }
 
     public function selecteur($id_admin){
@@ -90,11 +74,9 @@ class Adminsadctrl extends CI_Controller {
     }
 
     public function createadmin(){
-      if($this->estAdmin()){
         if($this->controlValidity()){
             $key=$this->config->item('key');
             $data['title'] = 'Liste des admins';
-            $this->load->model("admin_model");
             if($this->input->post('nom')!==null && $this->input->post('prenom')!==null && $this->input->post('email')!==null &&  $this->input->post('password')!==null && $this->input->post('privilege')!==null && $this->input->post('numero')!==null ){
                 $nom = $this->security->xss_clean($this->input->post('nom'));
                 $prenom = $this->security->xss_clean($this->input->post('prenom'));
@@ -113,7 +95,6 @@ class Adminsadctrl extends CI_Controller {
                     'password_admin' => $password,
                     'numero_admin'=> $nom,
                   );
-                  $this->load->model('admin_model');
                   $this->admin_model->create_admin($newadmin);
                   redirect("admins/get/0");
                 }else{
@@ -121,8 +102,8 @@ class Adminsadctrl extends CI_Controller {
                   $data['listeC'] = $this->admin_model->get_all_admins(0);
                   $data['error'] = 'Cet email est déja utilisé';
                   $this->load->view('template/header', $data);
-                  $this->load->view('template/navbar_admin', $data);
                   $this->load->view("template/error",$data);
+                  $this->load->view('template/navbar_admin', $data);
                   $this->load->view('pages/admin/admins', $data);
                   $this->load->view('template/pagination',$data);
                   $this->load->view('template/footer', $data);
@@ -137,11 +118,7 @@ class Adminsadctrl extends CI_Controller {
             $data['error'] = 'Erreur d\'authentification';
             $this->deconnexion();
           }
-        }else{
-          $data['error'] = 'Erreur d\'authentification';
-        $this->deconnexion();
-      }
-}
+        }
 
     public function deconnexion(){
       delete_cookie('the_good_one');
@@ -153,11 +130,9 @@ class Adminsadctrl extends CI_Controller {
     }
 
     public function editadmin($id_admin){
-      if($this->estAdmin()){
         if($this->controlValidity()){
           if($this->input->post('numero_admin')!==null || $this->input->post('nom_admin')!==null || $this->input->post('email_admin')!==null || $this->input->post('privilege_admin')!==null ){
             $data['tite'] = 'Liste des admins';
-            $this->load->model("admin_model");
             if($this->input->post('nom_admin')!==null){
                 $newvalues['nom_admin'] = $this->input->post('nom_admin');
             }
@@ -187,9 +162,6 @@ class Adminsadctrl extends CI_Controller {
             $data['error'] = 'Veuillez entrer tout les champs s\'il vous plait';
             redirect('admins/get/0');
           }
-        }else{
-            $this->deconnexion();
         }
       }
     }
-}

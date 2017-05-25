@@ -53,19 +53,18 @@ $route['default_controller'] = 'accueilCtrl/accueil';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['clients/get/search'] = 'clientadctrl/getclients/$1';
-$route['clients/get/(:num)'] = 'clientadctrl/getclients/$1';
-$route['clients/putdelete/(:num)'] = 'clientadctrl/selecteur/$1';
-$route['clients/post'] = 'clientadctrl/createclient';
-$route['clients/delete/(:num)'] = 'clientadctrl/supclient/$1';
-
+$route['clients/get/search'] = 'clientsadctrl/getclients/$1';
+$route['clients/get/(:num)'] = 'clientsadctrl/getclients/$1';
+$route['clients/put/(:num)'] = 'clientsadctrl/selecteur/$1';
+$route['clients/post'] = 'clientsadctrl/createclient';
+$route['clients/delete/(:num)'] = 'clientsadctrl/selecteur/$1';
 
 
 $route['admins/get/search'] = 'adminsadctrl/getadmins/$1';
 $route['admins/get/(:num)'] = 'adminsadctrl/getadmins/$1';
-$route['admins/putdelete/(:num)'] = 'adminsadctrl/selecteur/$1';
+$route['admins/put/(:num)'] = 'adminsadctrl/selecteur/$1';
 $route['admins/post'] = 'adminsadctrl/createadmin';
-$route['admins/delete/(:num)'] = 'adminsadctrl/supadmin/$1';
+$route['admins/delete/(:num)'] = 'adminsadctrl/selecteur/$1';
 
 
 $route['contrats/get/search'] = 'contratsadctrl/getcontrats/$1';
@@ -74,4 +73,12 @@ $route['contrats/post'] = 'contratsadctrl/createcontrat';
 
 
 $route['connect'] = 'accueilCtrl/connexion';
-$route['admins/deconnexion'] = 'clientadctrl/deconnexion';
+$route['admin/deconnexion'] = 'adminsadctrl/deconnexion';
+$route['client/put/(:num)'] = 'clientclictrl/editclient/$1';
+
+
+
+$route['client/get/(:num)'] = 'clientclictrl/getclient/$1';
+$route['client/deconnexion'] = 'clientclictrl/deconnexion';
+$route['client/put/mdp'] = 'clientclictrl/editclient/$1';
+$route['contrat/get/(:num)'] = 'contratclictrl/getcontrats/$1';

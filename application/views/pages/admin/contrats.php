@@ -109,7 +109,9 @@ $(document).ready(function() {
       $('.ui.modal').modal('show');
 });
 
-
+$('.ui.dropdown')
+.dropdown()
+;
     $('.ui.form')
       .form({
         fields: {

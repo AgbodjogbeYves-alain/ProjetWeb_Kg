@@ -24,7 +24,7 @@
            <a class="ui item" href="<?php echo base_url("contrats/get/0")?>">Gestion Contrats</a>
         </div>
         <div class="right menu">
-           <a class="item" href='<?php echo base_url("admins/deconnexion")?>'><i class="sign out icon" ></i>Deconnexion</a>
+           <a class="item" href='<?php echo base_url("admin/deconnexion")?>'><i class="sign out icon" ></i>Deconnexion</a>
         </div>
     </div>
 </nav>
@@ -33,13 +33,5 @@ $(document).ready(function() {
   // create sidebar and attach to menu open
    $('.ui.sidebar')
      .sidebar('attach events', '.toc.item');
-
-
-     $('.dropdown')
-  .dropdown({
-    // you can use any ui transition
-    transition: 'drop'
-  })
-;
 });
 </script>

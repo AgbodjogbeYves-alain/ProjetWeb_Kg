@@ -39,6 +39,23 @@ class Contrats_model extends CI_Model {
            $this->db->insert('Contrat',$array);
         }
 
+        public function nb_contrat($num){
+          $query = $this->db->select('id_contrat')->get_where('Contrat',array('num_client'=>$num));
+          $query = $query->result_array();
+          return count($query);
+        }
+
+        public function get_client_contrats($num){
+          $this->db->select('*');
+          $this->db->from('Contrat');
+          $this->db->join('Client', 'Client.id_client =Contrat.num_client');
+          $this->db->join('Type_contrat', 'Type_contrat.id_type =Contrat.type_contrat');
+          $this->db->where('num_client',$num);
+          $query = $this->db->get();
+          return $query->result_array();
+        }
+
+
         public function get_somes_contrats($param)
         {
           $this->db->select('*');

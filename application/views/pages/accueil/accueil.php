@@ -112,16 +112,14 @@
     </div>
   </div>
 
-<div class="ui small modal"> <i class="close icon"></i>
-  <div class="ui middle aligned center aligned grid">
-    <div class="column">
-      <h2 class="ui teal image header">
-        <i class="sign in icon"></i>
-        <div class="content">
+<div class="ui modal">
+  <div><i class="close right icon"></i>
+      <h2 class="ui teal header">
+        <div class="ui center aligned header">
           Fenêtre de connexion
         </div>
       </h2>
-      <form class="ui large form" method="post" action='<?php echo base_url('connect')?>'>
+      <form class="ui form" method="post" action='<?php echo base_url('connect')?>'>
         <div class="ui stacked segment">
           <div class="field">
             <div class="ui left icon input">
@@ -149,66 +147,14 @@
                 </div>
               </div>
             </div><br>
-          <div class="ui fluid large teal submit button">Connexion</div>
+          <div class="ui fluid large blue submit button">Connexion</div>
         </div>
         <div class="ui error message"></div>
 
       </form>
 
-      <div class="ui message">
+      <div class="ui center aligned message">
         Vous êtes nouveau? Contactez nous ;) <a href="#">Contact</a>
       </div>
     </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-
-$(document).ready(function() {
-  $("#openmodal").click(function () {
-      $('.ui.modal').modal('show');
-  });
-
-  $('.ui.dropdown')
-  .dropdown()
-;
-});
-</script>
-<script>
-  $(document)
-    .ready(function() {
-      $('.ui.form')
-        .form({
-          fields: {
-            email: {
-              identifier  : 'email',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Entrez un email'
-                },
-                {
-                  type   : 'email',
-                  prompt : 'Entrez un e-mail valide'
-                }
-              ]
-            },
-            password: {
-              identifier  : 'password',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Entrez un mot de passe'
-                },
-                {
-                  type   : 'length[3]',
-                  prompt : 'Votre mot de passe doit avoir plus de 3 caractères'
-                }
-              ]
-            }
-          }
-        })
-      ;
-    })
-  ;
-  </script>
+    </div>

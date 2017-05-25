@@ -19,7 +19,7 @@
             foreach ($listeC as $key => $value) {
 
                 echo '<form class="ui form" method="post" action="';
-                echo base_url('clients/putdelete/'.$value['id_client']);
+                echo base_url('clients/put/'.$value['id_client']);
                 echo '">';
                 echo <<<EOT
                     <table class="ui celled table">
@@ -76,35 +76,35 @@ EOT;
                   <div class="field">
                     <div class="ui left icon input">
                       <i class="user icon"></i>
-                      <input type="text" name="nom" placeholder="Nom de l'Entreprise ou du Particulier">
+                      <input type="text" name="nom" placeholder="Nom de l'Entreprise ou du Particulier"></input>
                     </div>
                   </div>
                   <div class="field">
                     <div class="ui left icon input">
                       <i class="user icon"></i>
-                      <input type="text" name="email" placeholder="E-mail de l'Entreprise ou du Particulier">
+                      <input type="text" name="email" placeholder="E-mail de l'Entreprise ou du Particulier"></input>
                     </div>
                   </div>
                   <div class="field">
                     <div class="ui left icon input">
                       <i class="lock icon"></i>
-                      <input type="password" name="password" placeholder="Mot de passe temporaire">
+                      <input type="password" name="password" placeholder="Mot de passe temporaire"></input>
                     </div>
                   </div>
                   <div class="field">
                     <div class="ui left icon input">
                       <i class="lock icon"></i>
-                      <input type="text" name="descriptif" placeholder="Decrivez l'entreprise en quelques mots">
+                      <input type="text" name="descriptif" placeholder="Decrivez l'entreprise en quelques mots"></input>
                     </div>
                   </div>
                   <div class="field">
                     <div class="ui left icon input">
                       <i class="lock icon"></i>
-                      <input type="text" name="representant" placeholder="Representant">
+                      <input type="text" name="representant" placeholder="Representant"></input>
                     </div>
                   </div>
                   <div class="ui fluid selection dropdown">
-                      <input type="hidden" name="type">
+                      <input type="hidden" name="type"></input>
                       <i class="dropdown icon"></i>
                       <div class="default text">Particulier ou Entreprise?</div>
                       <div class="menu">
@@ -124,6 +124,7 @@ EOT;
             </div>
     </div>
   </div>
+</div>
 
 <script>
 
@@ -131,6 +132,10 @@ $(document).ready(function() {
   $("#openmodal").click(function () {
       $('.ui.modal').modal('show');
 })
+
+$('.ui.dropdown')
+.dropdown()
+;
     $('.ui.celled.table td').dblclick(function(){
 
         var current = $(this).text();
