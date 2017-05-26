@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="icon" type="image/png" href="<?php echo base_url("element_design/images/favicon.png");?>" />
 
   <!-- Site Properties -->
   <link rel="stylesheet" type="text/css" href="<?php  echo base_url("element_design/semantic/out/semantic.min.css");?>"/>
