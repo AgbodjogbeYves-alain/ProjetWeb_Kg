@@ -1,7 +1,7 @@
 <br><br><br><br>
 <div class="ui main text container">
         <h1 class="ui center aligned blue segment header">Bienvenue sur le gestionnaire de vos Contrats</h1>
-        <form class="ui fluid" method="post" action='<?php echo base_url("contrats/get/search")?>'>
+        <form class="ui fluid" method="post" action='<?php echo base_url("contrat/get/search")?>'>
         <div class="ui fluid action input" >
 
           <input type="text" name='research' placeholder="Search...">

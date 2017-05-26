@@ -27,6 +27,8 @@ class Contratclictrl extends CI_Controller {
 
 
      public function getcontrats($num){
+       $id = get_cookie('id');
+       $data['id']=$id;
          if($this->controlValidity()){
            if($this->input->post("research")==null){
              $data['title'] = 'Liste des contrats';
@@ -51,6 +53,7 @@ class Contratclictrl extends CI_Controller {
            $this->deconnexion();
          }
        }
+
        public function deconnexion(){
          delete_cookie('the_good_one');
          delete_cookie('the_good_right');

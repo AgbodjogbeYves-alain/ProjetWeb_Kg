@@ -15,7 +15,7 @@ class Contrats_model extends CI_Model {
         {
           $haute = ($num*10)+10;
           $basse = $num*10;
-          $this->db->select('*');
+          $this->db->select('nom_client,descriptif_type,id_contrat,email_client,representant,liens_contrat,id_client');
           $this->db->from('Contrat');
           $this->db->join('Client', 'Client.id_client =Contrat.num_client');
           $this->db->join('Type_contrat', 'Type_contrat.id_type =Contrat.type_contrat');
@@ -57,19 +57,17 @@ class Contrats_model extends CI_Model {
 
 
         public function get_somes_contrats($param)
-        {
-          $this->db->select('*');
-          $this->db->from('Contrat');
-          $this->db->join('Client', 'Client.id_client =Contrat.num_client');
-          $this->db->join('Type_contrat', 'Type_contrat.id_type =Contrat.type_contrat');
-          $this->db->like('nom_client',$param);
-          $this->db->or_like('descriptif_type',$param);
-          $this->db->or_like("email_client",$param);
-          $this->db->or_like("representant",$param);
-          $query = $this->db->get();
-          return $query->result_array();
-        }
-
-
+          {
+            $this->db->select('*');
+            $this->db->from('Contrat');
+            $this->db->join('Client', 'Client.id_client =Contrat.num_client');
+            $this->db->join('Type_contrat', 'Type_contrat.id_type =Contrat.type_contrat');
+            $this->db->like('LOWER(nom_client)',strtolower($param));
+            $this->db->or_like('LOWER(descriptif_type)',strtolower($param));
+            $this->db->or_like('LOWER(email_client)',strtolower($param));
+            $this->db->or_like('LOWER(representant)',strtolower($param));
+            $query = $this->db->get();
+            return $query->result_array();
+          }
 
 }

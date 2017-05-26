@@ -25,6 +25,8 @@ class Clientclictrl extends CI_Controller {
        return ($this->client_model->isIn($email)>0 && hash("sha256",$key.'false'.$email)==get_cookie('the_good_one') && $time >=time());
      }
 
+
+
   public function getclient($num){
       $id = get_cookie('id');
       $count = $this->contrats_model->nb_contrat($id);
@@ -61,7 +63,7 @@ class Clientclictrl extends CI_Controller {
       if($this->controlValidity()){
         $id_client = get_cookie('id');
         $key = $this->config->item('key');
-        if($this->input->post('descriptif_client')!==null || $this->input->post('old')!==null || $this->input->post('new') || $this->input->post('nom_client')!==null || $this->input->post('email_client')!==null || $this->input->post('type_client')!==null ){
+        if($this->input->post('descriptif_client')!==null || $this->input->post('old')!==null || $this->input->post('representant')!==null || $this->input->post('new') || $this->input->post('nom_client')!==null || $this->input->post('email_client')!==null || $this->input->post('type_client')!==null ){
           if($this->input->post('nom_client')!==null){
               $newvalues['nom_client'] = $this->input->post('nom_client');
           }

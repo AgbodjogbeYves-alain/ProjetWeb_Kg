@@ -20,7 +20,6 @@ class Adminsadctrl extends CI_Controller {
     $email = get_cookie('email');
     $time = get_cookie('validity');
     $time = $this->encryption->decrypt($time);
-    $this->admin_model->isIn($email)>0;
     return ($this->admin_model->isIn($email)>0 && hash("sha256",$key.'true'.$email)==get_cookie('the_good_one') && $time >=time());
   }
 
@@ -96,7 +95,15 @@ class Adminsadctrl extends CI_Controller {
                     'numero_admin'=> $nom,
                   );
                   $this->admin_model->create_admin($newadmin);
-                  redirect("admins/get/0");
+                  $data['title'] = 'Liste des admins';
+                  $data['listeC'] = $this->admin_model->get_all_admins(0);
+                  $data['error'] = 'Succès de création';
+                  $this->load->view('template/header', $data);
+                  $this->load->view("template/error",$data);
+                  $this->load->view('template/navbar_admin', $data);
+                  $this->load->view('pages/admin/admins', $data);
+                  $this->load->view('template/pagination',$data);
+                  $this->load->view('template/footer', $data);
                 }else{
                   $data['title'] = 'Liste des admins';
                   $data['listeC'] = $this->admin_model->get_all_admins(0);
@@ -111,12 +118,26 @@ class Adminsadctrl extends CI_Controller {
 
 
               }else{
-                $data['error'] = 'Veuillez entrer tout les champs s\'il vous plait';
-                redirect("admins/get/0");
+                $data['error'] = 'Veuillez renseigner tout les champs s\'il vous plait';
+                $data['title'] = 'Liste des admins';
+                $data['listeC'] = $this->admin_model->get_all_admins(0);
+                $this->load->view('template/header', $data);
+                $this->load->view("template/error",$data);
+                $this->load->view('template/navbar_admin', $data);
+                $this->load->view('pages/admin/admins', $data);
+                $this->load->view('template/pagination',$data);
+                $this->load->view('template/footer', $data);
               }
           }else{
             $data['error'] = 'Erreur d\'authentification';
-            $this->deconnexion();
+            $data['title'] = 'Liste des admins';
+            $data['listeC'] = $this->admin_model->get_all_admins(0);
+            $this->load->view('template/header', $data);
+            $this->load->view("template/error",$data);
+            $this->load->view('template/navbar_admin', $data);
+            $this->load->view('pages/admin/admins', $data);
+            $this->load->view('template/pagination',$data);
+            $this->load->view('template/footer', $data);
           }
         }
 
@@ -157,10 +178,25 @@ class Adminsadctrl extends CI_Controller {
             }
 
             $this->admin_model->update_admins($newvalues,$id_admin);
-            redirect('admins/get/0');
+            $data['error'] = 'Modification bien prise en compte';
+            $data['title'] = 'Liste des admins';
+            $data['listeC'] = $this->admin_model->get_all_admins(0);
+            $this->load->view('template/header', $data);
+            $this->load->view("template/error",$data);
+            $this->load->view('template/navbar_admin', $data);
+            $this->load->view('pages/admin/admins', $data);
+            $this->load->view('template/pagination',$data);
+            $this->load->view('template/footer', $data);
           }else{
-            $data['error'] = 'Veuillez entrer tout les champs s\'il vous plait';
-            redirect('admins/get/0');
+            $data['error'] = 'Veuillez renseigner tous les champs s\'il vous plait';
+            $data['title'] = 'Liste des admins';
+            $data['listeC'] = $this->admin_model->get_all_admins(0);
+            $this->load->view('template/header', $data);
+            $this->load->view("template/error",$data);
+            $this->load->view('template/navbar_admin', $data);
+            $this->load->view('pages/admin/admins', $data);
+            $this->load->view('template/pagination',$data);
+            $this->load->view('template/footer', $data);
           }
         }
       }

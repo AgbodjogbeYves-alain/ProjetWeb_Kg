@@ -27,11 +27,10 @@
                     </thead>
                     <tbody> <!-- Corps du tableau -->
 EOT;
-                    next($value);
+
                     echo "<tr><td name=".key($value)." id=".key($value).">".$value["nom_client"]."</td>";
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["descriptif_type"]."</td>";
-                    next($value);
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["id_contrat"]."</td>";
                     next($value);
@@ -54,17 +53,15 @@ EOT;
         ?>
 <!---Modal ajout contrat--->
 
-    </div>
-  </div>
-  <div class="ui small modal"> <i class="close icon"></i>
-    <div class="ui middle aligned center aligned grid">
-      <div class="column">
-        <h2 class="ui teal image header">
+
+
+  <div class="ui modal"> <i class="close icon"></i>
+      <div class="header">
+        <h2 class="ui blue center aligned header">
           <i class="add user icon"></i>
-          <div class="content">
             Ajout Contrat
-          </div>
         </h2>
+      <div>
         <form class="ui large form" enctype="multipart/form-data" method="post" action='<?php echo base_url("contrats/post")?>'>
           <div class="ui stacked segment">
             <div class="field">
@@ -96,93 +93,10 @@ EOT;
             </div>
             <div class="ui error message"></div>
               </div><br>
-            <div class="ui fluid large teal submit button">Ajouter</div>
+            <div class="ui fluid large blue submit button">Ajouter</div>
           </div>
 
         </form>
       </div>
-
-<script>
-
-$(document).ready(function() {
-  $("#openmodal").click(function () {
-      $('.ui.modal').modal('show');
-});
-
-$('.ui.dropdown')
-.dropdown()
-;
-    $('.ui.form')
-      .form({
-        fields: {
-          email: {
-            identifier  : 'email',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Entrez un email'
-              },
-              {
-                type   : 'email',
-                prompt : 'Entrez un e-mail valide'
-              }
-            ]
-          },
-          password: {
-            identifier  : 'password',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Entrez un mot de passe'
-              },
-              {
-                type   : 'length[3]',
-                prompt : 'Votre mot de passe doit avoir plus de 3 caractères'
-              }
-            ]
-          },
-          nom: {
-            identifier  : 'name',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Entrez un nom'
-              },
-              {
-                type   : 'regExp[/^[a-zA-Z]+]',
-                prompt : 'Entrer un nom valide sans caractères spéciaux'
-              }
-            ]
-          },
-          prenom: {
-            identifier  : 'prenom',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Entrez un prenom'
-              }
-            ]
-          },
-        numero: {
-            identifier  : 'numero',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Entrez un numero'
-              }
-            ]
-          },
-          privilege: {
-            identifier  : 'privilege',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Chosissez un  privilege'
-              }
-            ]
-          }
-        }
-      })
-    ;
-});
-</script>
+    </div>
+    </div>

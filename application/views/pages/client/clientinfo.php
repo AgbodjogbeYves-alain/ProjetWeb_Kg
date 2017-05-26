@@ -73,4 +73,12 @@ EOT;
               </form>
         </div>
 </div>
-</div>
+<script>
+$('.ui.celled.table td').dblclick(function(){
+
+      var current = $(this).text();
+      var namePlace = $(this).attr("id");
+      $(this).html('<input type=text name='+namePlace+' value='+current+'></input>');
+      $(this).focus();
+  });
+</script>

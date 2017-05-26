@@ -124,7 +124,15 @@ class Clientsadctrl extends CI_Controller {
 
 
             }else{
-              redirect("clients/get/0");
+              $data['title'] = 'Liste des clients';
+              $data['listeC'] = $this->client_model->get_all_clients(0);
+              $data['error'] = "Veuillez renseigner tout les champs";
+              $this->load->view('template/header', $data);
+              $this->load->view("template/error",$data);
+              $this->load->view('template/navbar_admin', $data);
+              $this->load->view('pages/admin/clients', $data);
+              $this->load->view('template/pagination',$data);
+              $this->load->view('template/footer', $data);
             }
         }else{
           delete_cookie('the_good_one');
@@ -147,7 +155,7 @@ class Clientsadctrl extends CI_Controller {
 
     public function editclient($id_client){
       if($this->controlValidity()){
-        if($this->input->post('descriptif_client')!==null || $this->input->post('nom_client')!==null || $this->input->post('email_client')!==null || $this->input->post('type_client')!==null ){
+        if($this->input->post('descriptif_client')!==null || $this->input->post('representant')!==null || $this->input->post('nom_client')!==null || $this->input->post('email_client')!==null || $this->input->post('type_client')!==null ){
           $data['tite'] = 'Liste des clients';
           if($this->input->post('nom_client')!==null){
               $newvalues['nom_client'] = $this->input->post('nom_client');
@@ -175,17 +183,14 @@ class Clientsadctrl extends CI_Controller {
           }
 
           $this->client_model->update_client($newvalues,$id_client);
+          $data['error']="Votre modification à bien été prise en compte";
           redirect('clients/get/0');
         }else{
+          $data['error']="Aucunes informations a modifier";
           redirect('clients/get/0');
         }
         }else{
-          delete_cookie('validity');
-          delete_cookie('the_good_one');
-          delete_cookie('the_good_right');
-          delete_cookie('email');
-          delete_cookie('niveau');
-          redirect("/");
+          redirect("admin/deconnexion");
         }
       }
     }

@@ -17,7 +17,7 @@ INSERT INTO "Privileges"("id_privilege","libelle") VALUES (2,'Autre');
 INSERT INTO "Type_contrat"("id_type","descriptif_type") VALUES (0,'Business Plan');
 INSERT INTO "Type_contrat"("id_type","descriptif_type") VALUES (1,'Consulting');
 
-INSERT INTO "Administrateurs"("id_admin","nom_admin","prenom_admin","password_admin","numero_admin","email_admin","privilege_admin") VALUES (0,'Kouame','Nathan','$2y$10$TUfXPG.qp.J9dupmcogeeu7G0bdrNFuKEraX0.UOzhayxBe4P4ur.',0101010101,'nathan.kouame@ieseg.fr',0); /*ultimate*/
+INSERT INTO "Administrateurs"("id_admin","nom_admin","prenom_admin","password_admin","numero_admin","email_admin","privilege_admin") VALUES (0,'Kouame','Nathan','$2y$10$pYiTqEuvtX7GzUiNUNB9f.UMGPGXVXJVSJaVuVWe8cSX1oh.JsNze',0101010101,'nathan.kouame@ieseg.fr',0); /*ultimate*/
 INSERT INTO "Administrateurs"("id_admin","nom_admin","prenom_admin","password_admin","numero_admin","email_admin","privilege_admin") VALUES (1,'Goly','Constant','$2y$10$n71eHSjv8fJzKrm3w.MYm.yigGOvpkm48kQ.1IvB6UrA08zOJCD7q',0101010102,'goly.constant@ieseg.fr',0); /*ultimate2*/
   INSERT INTO "Administrateurs"("id_admin","nom_admin","prenom_admin","password_admin","numero_admin","email_admin","privilege_admin") VALUES (2,'Boué','Joel','$2y$10$N5RE.cEh7XFKBkFMY8oyxOtU6AnsUb3CyE07k0QFhwP4Uhlrgksr.',0101010102,'boue.joel@ba.fr',1); /*ultimate4*/
 INSERT INTO "Administrateurs"("id_admin","nom_admin","prenom_admin","password_admin","numero_admin","email_admin","privilege_admin") VALUES (3,'Ourigou','Zokou','$2y$10$20aqqddi/KBFFwIlDAPnv.AWBJx3caHUZZG.Rzbx2NVwWDG2FGRou',0101010102,'zokou.ourigou@ba.fr',1); /*ultimate3*/

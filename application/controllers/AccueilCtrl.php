@@ -63,8 +63,11 @@ class AccueilCtrl extends CI_Controller {
           $this->load->view('template/footer', $data);
         }
     }else{
-
-        $adminLog= $this->admin_model->get_admin_by_mail($email);
+      $adminLog= $this->admin_model->get_admin_by_mail($email);
+      //  print_r($adminLog);
+      // //
+      // print(password_hash($key.'moi',PASSWORD_BCRYPT));
+      $adminLog= $this->admin_model->get_admin_by_mail($email);
         if((count($adminLog)>0) && password_verify($password,$adminLog[0]['password_admin'])){
           $encryption_value = $key.'true'.$email;
           $encryption_value = hash("sha256",$encryption_value);

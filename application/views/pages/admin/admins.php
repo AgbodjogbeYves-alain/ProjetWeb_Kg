@@ -40,7 +40,6 @@ EOT;
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["prenom_admin"]."</td>";
                     next($value);
-                    next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["numero_admin"]."</td>";
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["email_admin"]."</td>";
@@ -67,15 +66,13 @@ EOT;
 
     </div>
   </div>
-  <div class="ui small modal"> <i class="close icon"></i>
-    <div class="ui middle aligned center aligned grid">
-      <div class="column">
-        <h2 class="ui teal image header">
+  <div class="ui  modal"> <i class="close icon"></i>
+    <div class="header">
+        <h2 class="ui center aligned blue header">
           <i class="add user icon"></i>
-          <div class="content">
             Ajout Administrateur
-          </div>
         </h2>
+          </div>
         <form class="ui large form" method="post" action='<?php echo base_url("admins/post")?>'>
           <div class="ui stacked segment">
             <div class="field">
@@ -127,8 +124,17 @@ EOT;
                 </div>
                 <div class="ui error message"></div>
               </div><br>
-            <div class="ui fluid large teal submit button">Ajouter</div>
+            <div class="ui fluid large blue submit button">Ajouter</div>
+
+          </form>
           </div>
 
-        </form>
-      </div>
+          <script>
+          $('.ui.celled.table td').dblclick(function(){
+
+                var current = $(this).text();
+                var namePlace = $(this).attr("id");
+                $(this).html('<input type=text name='+namePlace+' value='+current+'></input>');
+                $(this).focus();
+            });
+          </script>

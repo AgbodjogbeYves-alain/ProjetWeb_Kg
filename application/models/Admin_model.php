@@ -26,16 +26,11 @@ class Admin_model extends CI_Model {
           return $query->result_array();
         }
 
-        public function login_admin($email,$password){
-            $query = $this->db->get_where('Administrateurs',array('email_administrateur' => $email,'password_admin' => $password ));
-            return $query->result_array();
-        }
-
         public function get_all_admins($num)
         {
           $haute = ($num*10)+10;
           $basse = $num*10;
-          $this->db->select('*');
+          $this->db->select('id_admin,nom_admin,prenom_admin,numero_admin,email_admin,libelle');
           $this->db->from('Administrateurs');
           $this->db->join('Privileges', 'Administrateurs.privilege_admin =Privileges.id_privilege');
           $this->db->limit($haute,$basse);
@@ -60,17 +55,16 @@ class Admin_model extends CI_Model {
 
         public function get_somes_admins($param)
         {
-          $this->db->select('*');
+          $this->db->select('id_admin,nom_admin,prenom_admin,numero_admin,email_admin,libelle');
           $this->db->from('Administrateurs');
           $this->db->join('Privileges', 'Administrateurs.privilege_admin =Privileges.id_privilege');
-          $this->db->like('nom_admin',$param);
-          $this->db->or_like('libelle',$param);
-          $this->db->or_like("prenom_admin",$param);
-          $this->db->or_like("email_admin",$param);
+          $this->db->like('LOWER(nom_admin)',strtolower($param));
+          $this->db->or_like('LOWER(libelle)',strtolower($param));
+          $this->db->or_like('LOWER(prenom_admin)',strtolower($param));
+          $this->db->or_like('LOWER(email_admin)',strtolower($param));
           $query = $this->db->get();
           return $query->result_array();
         }
-
 
 
 }

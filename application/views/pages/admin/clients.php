@@ -43,7 +43,6 @@ EOT;
                     next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["email_client"]."</td>";
                     next($value);
-                    next($value);
                     echo "<td name=".key($value)." id=".key($value).">".$value["libelle"]."</td>";
                 echo<<<EOT
                 </tbody>
@@ -62,15 +61,13 @@ EOT;
             }
         ?>
 
-        <div class="ui small modal"> <i class="close icon"></i>
-          <div class="ui middle aligned center aligned grid">
-            <div class="column">
-              <h2 class="ui teal image header">
+        <div class="ui modal" id="openmodalform"> <i class="close icon"></i>
+            <div class="header">
+              <h2 class="ui center aligned blue header">
                 <i class="add user icon"></i>
-                <div class="content">
                   Ajout Client
-                </div>
               </h2>
+              </div>
               <form class="ui large form" method="post" action='<?php echo base_url("clients/post")?>'>
                 <div class="ui stacked segment">
                   <div class="field">
@@ -117,64 +114,19 @@ EOT;
                         </div>
                       </div>
                     </div><br>
-                  <div class="ui fluid large teal submit button">Ajouter</div>
+                  <div class="ui fluid large blue submit button">Ajouter</div>
                 </div>
                 <div class="ui error message"></div>
               </form>
             </div>
     </div>
-  </div>
-</div>
 
 <script>
+$('.ui.celled.table td').dblclick(function(){
 
-$(document).ready(function() {
-  $("#openmodal").click(function () {
-      $('.ui.modal').modal('show');
-})
-
-$('.ui.dropdown')
-.dropdown()
-;
-    $('.ui.celled.table td').dblclick(function(){
-
-        var current = $(this).text();
-        var namePlace = $(this).attr("id");
-        $(this).html('<input type=text name='+namePlace+' value='+current+'></input>');
-        $(this).focus();
-    });
-
-    $('.ui.form')
-      .form({
-        fields: {
-          email: {
-            identifier  : 'email',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Entrez un email'
-              },
-              {
-                type   : 'email',
-                prompt : 'Entrez un e-mail valide'
-              }
-            ]
-          },
-          password: {
-            identifier  : 'password',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Entrez un mot de passe'
-              },
-              {
-                type   : 'length[3]',
-                prompt : 'Votre mot de passe doit avoir plus de 3 caractères'
-              }
-            ]
-          }
-        }
-      })
-    ;
-});
+      var current = $(this).text();
+      var namePlace = $(this).attr("id");
+      $(this).html('<input type=text name='+namePlace+' value='+current+'></input>');
+      $(this).focus();
+  });
 </script>

@@ -81,4 +81,4 @@ $route['client/put/(:num)'] = 'clientclictrl/editclient/$1';
 $route['client/get/(:num)'] = 'clientclictrl/getclient/$1';
 $route['client/deconnexion'] = 'clientclictrl/deconnexion';
 $route['client/put/mdp'] = 'clientclictrl/editclient/$1';
-$route['contrat/get/(:num)'] = 'contratclictrl/getcontrats/$1';
+$route['contrat/get/(:any)'] = 'contratclictrl/getcontrats/$1';

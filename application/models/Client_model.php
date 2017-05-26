@@ -47,7 +47,7 @@ class Client_model extends CI_Model {
         {
           $haute = ($num*10)+10;
           $basse = $num*10;
-          $this->db->select('*');
+          $this->db->select('id_client,nom_client,descriptif_client,representant,email_client,libelle');
           $this->db->from('Client');
           $this->db->join('Type_client', 'Client.type_client = Type_client.id_type');
           $this->db->limit($haute,$basse);
@@ -75,11 +75,11 @@ class Client_model extends CI_Model {
           $this->db->select('*');
           $this->db->from('Client');
           $this->db->join('Type_client', 'Client.type_client = Type_client.id_type');
-          $this->db->like('nom_client',$param);
-          $this->db->or_like('libelle',$param);
-          $this->db->or_like("descriptif_client",$param);
-          $this->db->or_like("representant",$param);
-          $this->db->or_like("email_client",$param);
+          $this->db->like('LOWER(nom_client)',strtolower($param));
+          $this->db->or_like('LOWER(libelle)',strtolower($param));
+          $this->db->or_like('LOWER(descriptif_client)',strtolower($param));
+          $this->db->or_like('LOWER(representant)',strtolower($param));
+          $this->db->or_like('LOWER(email_client)',strtolower($param));
           $query = $this->db->get();
           return $query->result_array();
         }
